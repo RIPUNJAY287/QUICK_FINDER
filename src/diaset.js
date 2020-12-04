@@ -5,9 +5,7 @@ class Box extends Component{
   render(){
     return(
       <div>
-      <Dia className="box" name ="Rahul kumar" prof="Electrician"/>
-      <Dia className="box" name ="Rahul kumar" prof="Electrician"/>
-      <Dia className="box" name ="Rahul kumar" prof="Electrician"/>
+      <Dia className="box" item="REALME" name="Rohit Sharma" address="Block naggar" price="$4000" year=" 5yrs"/>
      </div>
     );
   }

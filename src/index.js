@@ -6,7 +6,7 @@ import "./index.css"
 
 
 ReactDOM.render(
-  <Box/>,
+  <Box />,
   document.getElementById('root')
 );
 
