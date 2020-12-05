@@ -1,51 +1,54 @@
-.diaHead{
+.DiaBox{
   width:350px;
   height: 225px;
   background: white;
-  border-radius: 5px;
-  box-shadow: 5px 5px 5px #c4c4c4 ;
+  bordaer-radius: 5px;
+  box-shadow: 5px 5px 20px #c4c4c4 ;
 }
-.item{
+.Dia_item{
   float:left;
   height:225px;
   width:190px;
 }
-.details{
+.Dia_details{
   float:left;
   height:225px;
   width:160px;
   font-size: 12px;
   text-align: center;
- padding-top: 20px;
+  padding-top: 20px;
 
 }
-p{
-  margin-left: 10px;
+.Dia_p{
+  margin-left: 12px;
   font-family: Andale Mono, monospace;
   color:rgb(170,170,170);
 }
 
-p.pro{
+.Dia_pro{
    font-size: 15px;
-   font-family: cursive;
+   font-family: sans-serif;
    font-weight: bold;
    color:black;
 }
-span{
-   padding: 5px;
+.Dia_pr,.Dia_yr{
   font-family: monospace;
 }
-.pr{
+.Dia_pr{
+  float: left;
+  margin-left: 40px;
   color:rgb(194, 156, 19);
   font-weight: bolder;
 
 }
-.yr{
+.Dia_yr{
+  margin-left: 15px;
   color:rgb(40, 224, 215);
   font-weight: bold;
 
 }
-.btn-dark{
+.Dia_expBtn{
+  margin-top: 5px;
   background-color: black;
   margin-left: 10px;
 }

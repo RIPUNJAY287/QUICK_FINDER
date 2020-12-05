@@ -4,14 +4,15 @@ import'bootstrap/dist/css/bootstrap.min.css';
 class Dia extends Component {
   render(){
    return (
-     <div className ="diaHead">
-     <img className="item" src = {process.env.PUBLIC_URL+"/realme.jpg"} alt="got" />
-     <div className = "details">
-     <p className="pro">{this.props.item}</p>
-     <p>{this.props.name}</p>
-     <p>{this.props.address}</p>
-     <p><span className="pr">{this.props.price}</span> <span className="yr">{this.props.year}</span></p>
-     <button type="button" class="btn btn-dark btn-sm">EXPLORE</button>
+     <div className ="DiaBox">
+     <img className="Dia_item" src = {process.env.PUBLIC_URL+"/realme.jpg"} alt="got" />
+     <div className = "Dia_details">
+     <p className="Dia_pro">{this.props.product}</p>
+     <p className="Dia_p">{this.props.name}</p>
+     <p className="Dia_p">{this.props.location}</p>
+     <p className="Dia_pr">{this.props.price}</p>
+      <p className="Dia_yr">{this.props.year}</p>
+     <button type="button" class="btn btn-dark btn-sm Dia_expBtn">EXPLORE</button>
     </div>
     </div>
   )

@@ -1,0 +1,32 @@
+.minibox{
+  width:210px;
+  height:240px;
+  background-color: white;
+  box-shadow: 5px 5px 20px #c4c4c4 ;
+}
+.mini_item{
+  width: 210px;
+  height:170px;
+  padding: 0px;
+  margin: 0px;
+}
+.mini_details{
+  height:70px;
+  width:210px;
+  padding: 5px;
+}
+.mini_pro{
+ float: left;
+ width: 80px;
+ font-size: 15px;
+ margin: 5px 0px 0px 12px;
+ font-family: Andale Mono, monospace;
+ color:rgb(120,120,120);
+}
+
+.mini_expBtn{
+  background-color: black;
+  margin: 12px 0px 0px 32px;
+  height:30px;
+  font-size: 12px;
+  }

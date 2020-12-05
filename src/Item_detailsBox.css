@@ -1,0 +1,69 @@
+.DetailsBox{
+  margin:10px 0px 0px 10px;
+  width:730px;
+  height: 400px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 7px 7px 20px #c4c4c4 ;
+}
+.Details_item{
+  float:left;
+  height:300px;
+  width:250px;
+  padding: 10px;
+  margin-top: 30px;
+}
+.Details_details{
+  float:left;
+  height:400px;
+  width:450px;
+  text-align: left;
+  margin-top: 10px;
+  padding: 10px;
+}
+.Details_pics{
+
+}
+.Details_pic,.Details_picl{
+  float:left;
+  height:100px;
+  width: 100px;
+  padding: 1px;
+  border: 1px solid black;
+}
+.Details_picl{
+  float: none;
+}
+.Details_disc{
+  font-size: 12px;
+  font-family: Andale Mono, monospace;
+  color:rgb(120,120,120);
+}
+.Details_pro{
+   font-size: 20px;
+   font-family: sans-serif;
+   color:black;
+}
+.Details_name{
+  font-size: 16px;
+}
+.Details_location{
+  font-size: 14px;
+}
+.Details_bottom{
+    margin-top: 20px;
+}
+.Details_pr{
+  float: left;
+  color:rgb(194, 156, 19);
+  font-weight: bolder;
+  font-family: monospace;
+  font-size: 20px;
+}
+.Details_purBtn{
+  float: right;
+  margin-right: 130px;
+  background-color: black;
+  margin-left: 10px;
+  border-radius: 0px;
+}
