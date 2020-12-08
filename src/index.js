@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Dia from "./dialog"
-import Box from "./diaset"
 import Head from "./head"
 import App from "./App"
 import "./index.css"
