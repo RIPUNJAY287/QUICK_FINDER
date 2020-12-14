@@ -1,0 +1,16 @@
+.itembar{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border: 1px solid lightgray;
+  box-shadow: 2px 2px 5px 2px gray;
+  margin: 5px;
+  width: 90%;
+}
+
+.itemcompo{
+  height: 40px;
+  margin:0 10px;
+  text-align: center;
+  padding: 8px;
+}

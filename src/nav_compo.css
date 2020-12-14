@@ -1,0 +1,9 @@
+.navcompo{
+  margin: 0 5px;
+  width:100px;
+  text-align: center;
+}
+.navcompo:active{
+  font-style: bold;
+  transform: scale(1.3);
+}

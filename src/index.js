@@ -2,11 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Dia from "./dialog"
 import Box from "./diaset"
+import ABCB from "./abcb"
 import "./index.css"
 
-
 ReactDOM.render(
-  <Box />,
+  <ABCB />,
   document.getElementById('root')
 );
 
