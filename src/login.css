@@ -1,0 +1,19 @@
+#mobile,#pwd{
+border-top:none;    
+border-left:none;    
+border-right:none;    
+background-color:white  ;
+width:80%;
+}
+#login{
+background-color: #111010;
+color:#bebbbb;    
+border-radius:8px;
+}
+#signup{
+background-color: #E9E9E9;
+box-shadow: 0 4px 2px rgb(0,0,0,0.16);
+border-radius:8px;
+margin-left:90%;
+color:#3B3A3A;
+}

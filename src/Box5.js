@@ -1,0 +1,22 @@
+import React from 'react'
+import ReactDOM from 'react-dom'
+class Box5 extends React.Component{
+    render(){
+        return (
+            <>
+            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'220px',padding:'0px',backgroundColor:'white'}}> 
+                <div class="container" style={{width:'200px'}}> 
+                    <img style={{width:'100%'}}src="https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/MTPL2_VW_34FR+watch-44-alum-spacegray-cell-6s_VW_34FR_WF_CO?wid=1400&hei=1400&trim=1,0&fmt=p-jpg&qlt=80&op_usm=0.5,0.5&.v=1566419577479,1599519901000"></img>
+                </div>
+                <div>
+                <table style={{width:'100%'}}>
+                    <tr><td>Philips Trimmer</td><td><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8'}}>Explore</button></td></tr>    
+                  </table>
+                </div>
+            </div>
+     
+            </>
+        );
+    }
+}
+export default Box5;
