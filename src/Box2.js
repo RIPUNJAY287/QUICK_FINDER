@@ -4,7 +4,7 @@ class Box1 extends React.Component{
     render(){
         return (
             <>
-            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'500px',backgroundColor:'white'}}> 
+            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'508px',backgroundColor:'white'}}> 
             <img style={{width:'100%'}} src="https://fdn.gsmarena.com/imgroot/news/20/03/realme-6-6i-c3-in-europe/-476x249w4/gsmarena_000.jpg" /> 
             <div class="row">
                 <div class="col-lg-6 pt-3">

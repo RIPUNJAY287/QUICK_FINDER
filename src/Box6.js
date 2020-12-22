@@ -1,18 +1,19 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {Link} from "react-router-dom";
-
-class Box1 extends React.Component{
+class Box6 extends React.Component{
     render(){
         return (
             <>
-            <div class="container m-2 p-3" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'250px',padding:'0px',backgroundColor:'white'}}> 
-            <div class="row" style={{height:'100%'}}>
-                <div class="col-lg-6"> 
-                    <img style={{width:'100%',height:'100%'}}src="https://cdn.vox-cdn.com/thumbor/VxVwYQjX8YjyLFyBekkGbjXyyVI=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19288658/DSCF7161.jpg"></img>
+            <div class="container m-2 p-3" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'400px',padding:'0px',backgroundColor:'white'}}> 
+            <div class="row">    
+                <div class="col-lg-12"> 
+                    <img style={{width:'60%',marginLeft:'20%',height:'100%'}}src="https://cdn.vox-cdn.com/thumbor/VxVwYQjX8YjyLFyBekkGbjXyyVI=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19288658/DSCF7161.jpg"></img>
                 </div>
-                <div class="col-lg-6 pl-4 pt-3">
-                   <table style={{textAlign:'center'}}>
+            </div>
+            <div class="row">    
+                <div class="col-lg-12">
+                   <table style={{textAlign:'center',margin:'auto'}}>
                     <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>Realme 5</td></tr>    
                     <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>Mohini Sharma</td></tr>    
                     <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>Shanti Nagar Banda</td></tr>    
@@ -23,11 +24,9 @@ class Box1 extends React.Component{
                   </table>
                 </div>
             </div>
-
-             </div>
-     
+            </div>
             </>
         );
     }
 }
-export default Box1;
+export default Box6;
