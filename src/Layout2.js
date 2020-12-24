@@ -14,6 +14,12 @@ class Layout2 extends React.Component{
 
  </div>
             </div>
+            <div class="container">
+                   <table style={{width:'100%'}}>
+                    <tr><td style={{textAlign:'center'}}><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>See More</button></td></tr>    
+                  </table>
+            </div>
+
             </>
         );
     }

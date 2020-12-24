@@ -17,6 +17,12 @@ class Layout3 extends React.Component{
   <div class="col-lg-3"><Box5 /><Box5 /><Box5 /></div>
  </div>
             </div>
+            <div class="container">
+                   <table style={{width:'100%'}}>
+                    <tr><td style={{textAlign:'center'}}><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>See More</button></td></tr>    
+                  </table>
+            </div>
+
             </>
         );
     }

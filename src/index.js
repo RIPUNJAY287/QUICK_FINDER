@@ -6,6 +6,8 @@ import App from "./App"
 import "./index.css"
 
 import {BrowserRouter,Route,Switch} from "react-router-dom"
+import Boxopen1 from './Boxopen1';
+
 ReactDOM.render( <>
   <BrowserRouter>
   <Head />

@@ -8,7 +8,7 @@ class DetailsBox extends Component {
      <img className="Details_item" src = {process.env.PUBLIC_URL+"/realme7.jpeg"} alt="got" />
      <div className = "Details_details">
      <p className="Details_pro">{this.props.product}</p>
-     <p className="Details_name">Owner : {this.props.name}</p>
+     <p className="Details_name">Realme 5 Mobile Phone  {this.props.name}</p>
      <p className="Details_location">location : {this.props.address}</p>
      <p className ="Details_disc">{this.props.disc}</p>
      <div className="Details_pics">
