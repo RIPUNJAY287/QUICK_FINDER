@@ -7,21 +7,69 @@ import "./login.css"
 import {Link} from "react-router-dom";
 class Login extends React.Component{
 
-  // submitHandler=(e)=>{
-  //   e.preventDefault()
-  //   console.log("Called");
-  //   fetch("http://localhost:3005/login")
-  //     .then(res => {
-  //       res.json()
-  //       console.log(res)})
-  //     .then((result) => {
-  //         console.log(result);
-  //       },
-  //       (error) => {
-  //         console.log(error);
-  //       }
-  //     )
-  // }
+  constructor(props) {
+    super(props);
+    this.state = {username:"",
+                  password:""};
+  }
+
+  validate=(e)=>{
+    console.log("validating "+e);
+    if(e!==undefined && this.state[e]!==""){
+      this.setState({[e]:this.state[e].trim()})
+      return true
+    }else{
+      return false
+    }
+  }
+
+  submitHandler=(e)=> {
+    e.preventDefault();
+    var validated=true;
+    var keys=["username","password"]
+    keys.map(item=>{
+      console.log(item);
+       if(!this.validate(item)){
+         validated=false
+       }
+    })
+    if(validated){
+      console.log(this.state.username+" "+this.state.password);
+      console.log("Submit handler");
+
+      var loginDetails ={
+        user_name : this.state.username,
+        pass_word : this.state.password
+      };
+
+        fetch('http://localhost:3005/login', {
+          method: 'post',
+          body : JSON.stringify({
+            loginDetails
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+        }).then((res) => res.json())
+     .then((json) => {
+       console.log(json.mes);
+       if(json.mes==="Welcome"){
+         console.log("Welcome");
+       }
+     })
+     .catch((error) => {
+       console.error(error);
+     });
+   }else{
+     console.log("Empty Fields");
+   }
+  }
+
+  handleChange=(e)=>{
+      var item=e.target.name
+      this.setState({ [e.target.name]: e.target.value });
+  }
 
   render(){
     return (<>
@@ -35,14 +83,14 @@ class Login extends React.Component{
   <div style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px'}}><span style={{fontFamily:'arial',color:'#6A6666',fontWeight:'700'}}>Welcome to</span> Quick Finder</div>
   <div style={{fontFamily:'arial',color:'#8E8E8E'}}>We make easy to buy in low cast.</div>
 
-  <form style={{marginTop:'30px'}} action="http://localhost:3005/login" method="post">
+  <form style={{marginTop:'30px'}} onSubmit={this.submitHandler}>
   <div class="form-group">
     <label for="username">Username</label>
-    <input type="text" class="form-control" name="user_name"/>
+    <input type="text" class="form-control" name="username" value={this.state.username} onChange={this.handleChange}/>
   </div>
   <div class="form-group">
     <label for="pwd">Password</label>
-    <input type="password" class="form-control" name="pass_word" />
+    <input type="password" class="form-control" name="password" value={this.state.password} onChange={this.handleChange}/>
   </div>
   <Link to="/QUICK_FINDER/signup" class="btn btn-default" id="signup">Create Profile</Link>
   <input type="submit" class="btn btn-default" value="Login" id="login"/>
@@ -50,15 +98,15 @@ class Login extends React.Component{
 
   <span style={{fontSize:'13px',fontFamily:'arial',fontWeight:'800'}}> FACEBOOK</span>
   <span style={{fontSize:'13px',fontFamily:'arial',fontWeight:'800'}}> GOOGLE</span>
-  </form>  
-  </div>    
- 
+  </form>
+  </div>
+
                     </div>
   </div>
-                
-  
-  </div>    
-    
+
+
+  </div>
+
     </>) ;
 
  }

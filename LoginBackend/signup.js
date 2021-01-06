@@ -3,6 +3,8 @@ var cors=require('cors')
 var app=express()
 var fs=require('fs')
 var bodyParser=require('body-parser')
+const http = require('http');
+
 
 app.use(cors())
 
@@ -13,26 +15,33 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb+srv://rishak192:Mongodb@192@firstproject.8maq4.mongodb.net/UserData?retryWrites=true&w=majority";
+const url = "mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority";
 
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
 
-const dbName = "UserData";
+const dbName = "Quick_Finder";
 
 app.get('/',function(req,res){
   res.send("Hello")
 })
 
 app.post('/login',function(req,res){
-  const uname=req.body.user_name
-  const pass=req.body.pass_word
+
+  console.log(req.body.loginDetails.user_name);
+
+  const uname=req.body.loginDetails.user_name
+  const pass=req.body.loginDetails.pass_word
+
+  console.log(uname,pass);
+  var loggedin=false;
+
   const request=req
   async function run() {
           await client.connect();
           // console.log("Connected correctly to server");
           const db = client.db(dbName);
 
-          db.collection("User").find({}).toArray(function(err, result) {
+          db.collection("Users").find({}).toArray(function(err, result) {
           if (err) throw err;
           console.log(uname," ",pass);
           for(var i=0;i<result.length;i++){
@@ -40,10 +49,16 @@ app.post('/login',function(req,res){
             if(uname===result[i].name && pass===result[i].password){
               // redirect to profile page
               console.log("Logged In");
+              res.json({mes:"Welcome"})
+              loggedin=true
               // console.log("Logged In ",uname," ",pass," ",result[i].name," ",result[i].password);
             }
           }
-          // res.send(req.body.user_name+"Rishak")
+          console.log("Done");
+          if(!loggedin){
+            console.log("Does not exist");
+            res.json({mes:uname+"Does not exist"});
+          }
         });
       }
    run().catch(console.dir);
@@ -51,12 +66,12 @@ app.post('/login',function(req,res){
 
 app.post('/signup',function(req,res){
 
-  var uname=req.body.first_name
-  var sname=req.body.sec_name
-  var password=req.body.password
-  var mobile=req.body.mobile
-  var email=req.body.email
-  var address=req.body.address
+  var uname=req.body.signupDetails.fname
+  var sname=req.body.signupDetails.lname
+  var password=req.body.signupDetails.password
+  var mobile=req.body.signupDetails.mobile
+  var email=req.body.signupDetails.email
+  var address=req.body.signupDetails.address
 
   async function run() {
      try {
@@ -65,7 +80,7 @@ app.post('/signup',function(req,res){
           const db = client.db(dbName);
 
           // Use the collection "people"
-          const col = db.collection("User");
+          const col = db.collection("Users");
 
           let personDocument = {
               "name": uname,
@@ -77,7 +92,10 @@ app.post('/signup',function(req,res){
           }
 
           // Insert a single document, wait for promise so we can read it back
+          console.log("Started");
           const p = await col.insertOne(personDocument);
+          console.log("Done");
+          res.send(personDocument);
           // const myDoc = await col.findOne();
           // Print to the console
           // console.log(myDoc);
@@ -93,6 +111,6 @@ app.post('/signup',function(req,res){
    run().catch(console.dir);
 })
 
-app.listen(3005,function(req,res){
-  console.log('3005');
-})
+app.listen(3005, () => {
+  console.log("listening");
+});
