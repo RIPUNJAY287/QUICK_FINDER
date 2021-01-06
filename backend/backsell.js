@@ -13,7 +13,6 @@ app.use(bodyParse.urlencoded({
 }));
 app.use(bodyParse.json());
 
-
 var storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null,'../public/uploadpics');
@@ -101,4 +100,4 @@ images :{
 });
 app.use('/backend',router);
 app.use('/uploads',express.static(__dirname+'../public/uploads/'));
-app.listen(5000);
+app.listen(3005);
