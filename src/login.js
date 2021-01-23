@@ -4,13 +4,15 @@ import Dia from "./dialog"
 import Box from "./diaset"
 import Head from "./head"
 import "./login.css"
-import {Link} from "react-router-dom";
+import {Link, Redirect} from "react-router-dom";
 class Login extends React.Component{
 
   constructor(props) {
     super(props);
     this.state = {username:"",
-                  password:""};
+                  password:"",
+                };
+    this.state= {isLoggedIn:false};
   }
 
   validate=(e)=>{
@@ -56,7 +58,10 @@ class Login extends React.Component{
        console.log(json.mes);
        if(json.mes==="Welcome"){
          console.log("Welcome");
-       }
+         console.log(json.usern);
+         sessionStorage.setItem("username", json.usern);
+         this.setState({isLoggedIn:true});
+        }
      })
      .catch((error) => {
        console.error(error);
@@ -72,6 +77,12 @@ class Login extends React.Component{
   }
 
   render(){
+    const isLoggedIn = this.state.isLoggedIn;
+    const usern = this.state.usern;
+    if(isLoggedIn){
+    return <Redirect to='/Quick_Finder/' />
+    }
+    else {
     return (<>
   <div class="container" style={{padding:'0px',width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0px 0px 72px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
   <div class="row">
@@ -108,7 +119,7 @@ class Login extends React.Component{
   </div>
 
     </>) ;
-
+    }
  }
 
 }

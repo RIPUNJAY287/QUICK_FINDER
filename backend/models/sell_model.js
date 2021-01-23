@@ -7,10 +7,7 @@ const sellProductSchema = new schema({
   status:{type:String},
   price:{type:String},
   description:{type:String},
-  images : {
-    data:Buffer,
-    contentType:String
-  }
+  product_images:{type : [String]}
 });
 const sellProduct = mongoose.model('sellProduct',sellProductSchema,"sellProducts");
 module.exports = sellProduct;
