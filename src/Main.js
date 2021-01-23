@@ -10,7 +10,6 @@ class Main extends React.Component{
     render(){
         return (
         <>
-        Welcome {sessionStorage.getItem("username")}
         <Caro />
         <Layout1 />
         <Layout2 />

@@ -7,11 +7,9 @@ import Signup from "./Signup"
 import About from "./About";
 import Sell from "./Sell";
 import Boxopen1 from "./Boxopen1";
-import Profile from "./Profile";
 const App =() =>{
         return (<>
         <Switch>
-            {/* <Route exact path='/QUICK_FINDER/' component={Profile}/> */}
             <Route exact path='/QUICK_FINDER/' component={Main}/>
             <Route path='/QUICK_FINDER/login' component={Login} />
             <Route path='/QUICK_FINDER/Signup' component={Signup} />
