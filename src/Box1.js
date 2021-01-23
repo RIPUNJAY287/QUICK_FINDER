@@ -13,7 +13,7 @@ class Box1 extends React.Component{
                 </div>
                 <div class="col-lg-6 pl-4 pt-3">
                    <table style={{textAlign:'center'}}>
-                    <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>Realme 5</td></tr>    
+                    <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>Realm</td></tr>    
                     <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>Mohini Sharma</td></tr>    
                     <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>Shanti Nagar Banda</td></tr>    
                     <tr><td style={{fontWeight:'400',color:'#928D3D',fontWeight:'700',fontSize:'17px'}}>$5000</td><td style={{fontWeight:'400',color:'#2E7F8F',fontWeight:'600',fontSize:'17px'}}>2 Yrs.</td></tr>

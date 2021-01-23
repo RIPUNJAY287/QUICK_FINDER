@@ -49,7 +49,7 @@ app.post('/login',function(req,res){
             if(uname===result[i].name && pass===result[i].password){
               // redirect to profile page
               console.log("Logged In");
-              res.json({mes:"Welcome"})
+              res.json({mes:"Welcome",usern:result[i]._id})
               loggedin=true
               // console.log("Logged In ",uname," ",pass," ",result[i].name," ",result[i].password);
             }
