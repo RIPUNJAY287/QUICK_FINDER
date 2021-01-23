@@ -25,7 +25,7 @@ class Sell extends React.Component{
      status :'',
      price : '',
      description:'',
-     selectedFiles:null
+     selectedFiles :null
    };
   }
 
@@ -63,7 +63,39 @@ onchangeFiles(e){
 
 onsubmit(e){
   e.preventDefault();
+  var formdata =  new FormData();
+  formdata.append('product_name' , this.state.product_name);
+  formdata.append('product_type' , this.state.product_type);
+  formdata.append('status' , this.state.status);
+  formdata.append('price' , this.state.price);
+  formdata.append('description' , this.state.description);
+  for (var i = 0;i<this.state.selectedFiles.length;i++) {
+    formdata.append(`files${i}`,this.state.selectedFiles[i]);
+ }
+  axios({
+      method: 'post',
+      url: '/backend/SellNow',
+      data: formdata,
+      headers: {'Content-Type': 'multipart/form-data' }
+      })
+      .then(function (response) {
+        this.setState ={
+          product_name :'',
+          product_type :'',
+          status :'',
+          price : '',
+          description:'',
+          selectedFiles:null
+        };
+          console.log(response);
+      })
+      .catch(function (response) {
 
+          console.log(response);
+      });
+
+/*
+  console.log(this.state.selectedFiles);
   var sellProduct ={
     product_name : this.state.product_name,
     product_type : this.state.product_type,
@@ -83,8 +115,9 @@ console.log("here in object");
         status :'',
         price : '',
         description:'',
-        selectedFiles:null
+        selectedFiles:[]
       };
+*/
 
 }
 
