@@ -38,7 +38,6 @@ app.post('/login',function(req,res){
   const request=req
   async function run() {
           await client.connect();
-          // console.log("Connected correctly to server");
           const db = client.db(dbName);
 
           db.collection("Users").find({}).toArray(function(err, result) {
@@ -47,11 +46,9 @@ app.post('/login',function(req,res){
           for(var i=0;i<result.length;i++){
             console.log(result[i].UserName,result[i].PassWord);
             if(uname===result[i].name && pass===result[i].password){
-              // redirect to profile page
               console.log("Logged In");
               res.json({mes:"Welcome",usern:result[i]._id})
               loggedin=true
-              // console.log("Logged In ",uname," ",pass," ",result[i].name," ",result[i].password);
             }
           }
           console.log("Done");
@@ -76,10 +73,8 @@ app.post('/signup',function(req,res){
   async function run() {
      try {
           await client.connect();
-          // console.log("Connected correctly to server");
           const db = client.db(dbName);
 
-          // Use the collection "people"
           const col = db.collection("Users");
 
           let personDocument = {
@@ -91,15 +86,10 @@ app.post('/signup',function(req,res){
               "address":address
           }
 
-          // Insert a single document, wait for promise so we can read it back
           console.log("Started");
           const p = await col.insertOne(personDocument);
           console.log("Done");
           res.send(personDocument);
-          // const myDoc = await col.findOne();
-          // Print to the console
-          // console.log(myDoc);
-          // res.send(myDoc)
 
          } catch (err) {
           console.log(err.stack);
@@ -114,3 +104,47 @@ app.post('/signup',function(req,res){
 app.listen(3005, () => {
   console.log("listening");
 });
+
+app.post('/buy',function(req,res){
+
+  const url = "mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority";
+
+  const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
+
+  var buyerID=req.body.buyDetails.buyerID
+  var sellerID=req.body.buyDetails.sellerID
+  var productID=req.body.buyDetails.productID
+  var datetime=req.body.buyDetails.DateTime
+
+  let buyDocument = {
+    "BuyerID": buyerID,
+    "DateTime":datetime,
+    "SellerID":sellerID,
+    "ProductID":productID
+  }
+  console.log(buyDocument);
+
+  async function run() {
+     try {  
+          await client.connect();
+          const db = client.db(dbName);
+
+          const col = db.collection("userProducts");
+
+          await col.updateOne({ "_id": buyerID },
+                        { $push: { purchased: buyDocument }},
+                        {upsert:true})
+
+          console.log("buy Added");
+          res.json({mes:buyDocument});
+
+         } catch (err) {
+          console.log(err.stack);
+      }
+      finally {
+         await client.close();
+     }  
+   }
+   run().catch(console.dir);
+})
+

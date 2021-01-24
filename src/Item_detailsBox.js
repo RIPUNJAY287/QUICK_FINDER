@@ -2,6 +2,33 @@ import React, {Component} from "react";
 import './Item_detailsBox.css'
 import'bootstrap/dist/css/bootstrap.min.css';
 class DetailsBox extends Component {
+
+  buy=(e)=>{
+    var buyDetails={
+      buyerID:"123",
+      sellerID:"213",
+      productID:"54454fyfh54hjk",
+      DateTime:new Date()
+    }
+    console.log("buyed");
+    fetch('http://localhost:3005/buy', {
+          method: 'post',
+          body : JSON.stringify({
+              buyDetails
+          }),
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+          }
+          }).then((res) => res.json())
+            .then((json) => {
+              console.log(json.mes);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+  }
+
   render(){
    return (
      <div className ="DetailsBox">
@@ -18,7 +45,7 @@ class DetailsBox extends Component {
     </div>
      <div className="Details_bottom">
      <p className="Details_pr">{this.props.price} </p>
-     <button type="button" class="btn btn-dark btn-sm Details_purBtn">PURCHASE</button>
+     <button type="button" class="btn btn-dark btn-sm Details_purBtn" onClick={this.buy}>PURCHASE</button>
     </div>
     </div>
     </div>
