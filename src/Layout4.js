@@ -13,9 +13,9 @@ class Layout4 extends React.Component{
         <h4 style={{textAlign:'center',marginTop:'30px'}}>   Buy Vehicle And Full fill Your Dreams</h4>
             <div class="container" style={{width:'75%'}}>
             <div class="row">
-  <div class="col-lg-4"><Box6 comp_num={11}/></div>
-  <div class="col-lg-4"><Box6 comp_num={12}/></div>
-  <div class="col-lg-4"><Box6 comp_num={13}/></div>
+  <div class="col-lg-4"><Box6 /></div>
+  <div class="col-lg-4"><Box6 /></div>
+  <div class="col-lg-4"><Box6 /></div>
  </div>
             </div>
             <div class="container">

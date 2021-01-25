@@ -38,7 +38,7 @@ class Signup extends React.Component{
       validated=false
     }
 
-    if(this.state.password.length>=6){
+    if(this.state.password.lrngth>=6){
       validated=false
     }
 
