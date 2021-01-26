@@ -16,6 +16,7 @@ app.use(bodyParser.json());
 
 const MongoClient = require('mongodb').MongoClient;
 const { ObjectId } = require('mongodb')
+const { isEmptyBindingElement } = require('typescript')
 const url = "mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority";
 
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
@@ -34,6 +35,11 @@ app.post('/filter',function(req,res){
    run().catch(console.dir);
 })
 app.post('/getDetails',function(req,res){
+  var search_input=req.body.obj.search_input;
+  // var search_input="Mobile phone";  
+  var search_obj={};
+  if(search_input!="")
+  search_obj.product_type=search_input;
   console.log("Ya its running ");
   const request=req
   async function run() {
@@ -41,7 +47,7 @@ app.post('/getDetails',function(req,res){
           // console.log("Connected correctly to server");
           const db = client.db(dbName);
           var array=[];
-          db.collection("sellProducts").find({}).toArray(function(err, result) {
+          db.collection("sellProducts").find(search_obj).toArray(function(err, result) {
           if (err) throw err;
           for(var i=0;i<result.length;i++){
             console.log(result[i].product_name);

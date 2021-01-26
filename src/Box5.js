@@ -4,48 +4,32 @@ class Box5 extends React.Component{
     constructor(props) {
         super(props);
         this.state = {
-                    product_name:"",
-                    product_type:"",
-                    status:"",
-                    price:"",
+                    product_name:"Loading.....",
+                    product_type:"Loading.....",
+                    status:"Loading..",
+                    price:"Loading..",
                     seller_name:"",
                     seller_address:"",
-                    product_id:""
+                    product_id:"",
+                    seller_id:"Loading..",
+                    description:"Loading..",
+                    search_input:""
                   };
-        this.getDetails();
-              this.getDetails=this.getDetails.bind(this);
-      }
-      
-      getDetails(){
-            console.log("ya1");
-            fetch('http://localhost:3005/getDetails', {
-                method: 'post',
-                body : JSON.stringify({
-                }),
-                headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
+        
                 }
-              }).then((res) => res.json())
-           .then((json) => {
-            console.log(this.props.comp_num);
-            var i=this.props.comp_num;
-            this.setState({
-              product_name:json.mes[i].product_name,
-              product_type:json.mes[i].product_type,
-              status:json.mes[i].status,
-              price:json.mes[i].price,
-              product_id:json.mes[i].product_id,
-              seller_name:json.mes[i].seller_name,
-              seller_address:json.mes[i].seller_address,
-              });
-              console.log(this.state.product_id);
-          });
-              return ;  
+      static getDerivedStateFromProps(props,state){
+        return {
+            product_name:props.product_name,
+            product_type:props.product_type,
+            status:props.status,
+            price:props.price,
+            product_id:props.product_id,
+            seller_name:props.seller_name,
+            seller_address:props.seller_address,
+            seller_id:props.seller_id,
+            search_input:props.search_input}
         }
-      
     
-
     render(){
         return (
             <>
