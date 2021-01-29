@@ -31,7 +31,7 @@ class Layout2 extends React.Component{
      status={this.state.getting[this.state.i]?this.state.getting[this.state.i].status:"Loading..."}
       price={this.state.getting[this.state.i]?this.state.getting[this.state.i].price:"Loading...."} 
       product_id={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_id:"Loading..."} 
-      description={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].description:"Loading..."} 
+      description={this.state.getting[this.state.i]?this.state.getting[this.state.i].description:"Loading..."} 
       seller_id={this.state.getting[this.state.i]?this.state.getting[this.state.i].seller_id:"Loading..."}/>
 
 

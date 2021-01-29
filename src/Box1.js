@@ -21,16 +21,7 @@ class Box1 extends React.Component{
                 search_input:""
               };
     
-
-
-  //   this.getDetails();
-  //         this.getDetails=this.getDetails.bind(this);
-   }
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.search_input != this.props.search_input) { 
-  //     this.getDetails();
-  //   }
-  // }
+            }
   static getDerivedStateFromProps(props,state){
     return {
         product_name:props.product_name,

@@ -35,11 +35,11 @@ app.post('/filter',function(req,res){
    run().catch(console.dir);
 })
 app.post('/getDetails',function(req,res){
+  function filterByValue(array, string) {
+    return array.filter(o =>
+        Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
+ }
   var search_input=req.body.obj.search_input;
-  // var search_input="Mobile phone";  
-  var search_obj={};
-  if(search_input!="")
-  search_obj.product_type=search_input;
   console.log("Ya its running ");
   const request=req
   async function run() {
@@ -47,7 +47,7 @@ app.post('/getDetails',function(req,res){
           // console.log("Connected correctly to server");
           const db = client.db(dbName);
           var array=[];
-          db.collection("sellProducts").find(search_obj).toArray(function(err, result) {
+          db.collection("sellProducts").find().toArray(function(err, result) {
           if (err) throw err;
           for(var i=0;i<result.length;i++){
             console.log(result[i].product_name);
@@ -57,7 +57,7 @@ app.post('/getDetails',function(req,res){
             obj.status=result[i].status;
             obj.price=result[i].price;
             obj.description=result[i].description;
-            obj.product_id=result[i]._id;
+            obj.product_id=ObjectId(result[i]._id).toString();
             obj.seller_id=result[i].seller;
             var seller_id= new ObjectId(result[i].seller);
             var sell_name="";
@@ -71,13 +71,14 @@ app.post('/getDetails',function(req,res){
             obj.seller_name=sell_name;
             obj.seller_address=sell_address;
           });
-          array.push(obj);  
+            array.push(obj);  
           }
-          console.log("Hii");
-          res.json({mes:array});
+          var anoarray=filterByValue(array,search_input);
+          anoarray=anoarray.concat(array);
+          res.json({mes:anoarray});
   });
 }
-   run().catch(console.dir);
+   run().catch(console.dir);  
 });
 
 app.listen(3005, () => {
