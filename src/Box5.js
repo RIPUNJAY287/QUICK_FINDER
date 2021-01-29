@@ -1,6 +1,35 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 class Box5 extends React.Component{
+    constructor(props) {
+        super(props);
+        this.state = {
+                    product_name:"Loading.....",
+                    product_type:"Loading.....",
+                    status:"Loading..",
+                    price:"Loading..",
+                    seller_name:"",
+                    seller_address:"",
+                    product_id:"",
+                    seller_id:"Loading..",
+                    description:"Loading..",
+                    search_input:""
+                  };
+        
+                }
+      static getDerivedStateFromProps(props,state){
+        return {
+            product_name:props.product_name,
+            product_type:props.product_type,
+            status:props.status,
+            price:props.price,
+            product_id:props.product_id,
+            seller_name:props.seller_name,
+            seller_address:props.seller_address,
+            seller_id:props.seller_id,
+            search_input:props.search_input}
+        }
+    
     render(){
         return (
             <>
@@ -10,7 +39,7 @@ class Box5 extends React.Component{
                 </div>
                 <div class="container">
                    <table style={{width:'100%'}}>
-                    <tr><td style={{fontWeight:'700',color:'#3E3B3B'}}>Apple Watch</td><td><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</button></td></tr>    
+                    <tr><td style={{fontWeight:'700',color:'#3E3B3B'}}>{this.state.product_name}</td><td><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</button></td></tr>    
                   </table>
                 </div>
             </div>
