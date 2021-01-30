@@ -62,15 +62,7 @@ app.post('/getDetails',function(req,res){
             var seller_id= new ObjectId(result[i].seller);
             var sell_name="";
             var sell_address="";
-            db.collection("Users").find({"_id":seller_id}).toArray(function(err, result2) {
-            if (err) throw err;
-            for(var j=0;j<1;j++){
-            sell_name=result2[j].name;
-            sell_address=result2[j].address;
-            }
-            obj.seller_name=sell_name;
-            obj.seller_address=sell_address;
-          });
+  
             array.push(obj);  
           }
           var anoarray=filterByValue(array,search_input);

@@ -10,7 +10,7 @@
   width:20%;
   text-align: center;
 }
-a, a:hover, a:focus, a:active {
+a.x, a.x:hover, a.x:focus, a.x:active {
       text-decoration: none;
       color: inherit;
  }
