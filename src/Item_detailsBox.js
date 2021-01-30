@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import './Item_detailsBox.css'
 import'bootstrap/dist/css/bootstrap.min.css';
+import { ObjectId } from "mongodb";
 class DetailsBox extends Component {
 
   buy=(e)=>{
     var buyDetails={
-      buyerID:"123",
+      buyerID:sessionStorage.getItem("username"),
       sellerID:"213",
       productID:"54454fyfh54hjk",
       DateTime:new Date()

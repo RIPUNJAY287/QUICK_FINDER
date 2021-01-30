@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json());
 
 const MongoClient = require('mongodb').MongoClient;
+const { ObjectId } = require('mongodb')
 const url = "mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority";
 
 const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
@@ -117,10 +118,9 @@ app.post('/buy',function(req,res){
   var datetime=req.body.buyDetails.DateTime
 
   let buyDocument = {
-    "BuyerID": buyerID,
-    "DateTime":datetime,
-    "SellerID":sellerID,
-    "ProductID":productID
+    "Time":datetime,
+    "SellerId":new ObjectId("5ff5404a31512f1b0ad64a48"),
+    "ProductId":new ObjectId("600c876d15877370d8e380b7")
   }
   console.log(buyDocument);
 
@@ -131,7 +131,7 @@ app.post('/buy',function(req,res){
 
           const col = db.collection("userProducts");
 
-          await col.updateOne({ "_id": buyerID },
+          await col.updateOne({ "_id": ObjectId(buyerID) },
                         { $push: { purchased: buyDocument }},
                         {upsert:true})
 
