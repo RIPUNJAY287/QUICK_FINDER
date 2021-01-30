@@ -9,6 +9,9 @@ class Head extends React.Component {
     <Link class="nav-link" to="/QUICK_FINDER/">Home</Link>
   </li>
   <li class="nav-item">
+    <Link class="nav-link" to="/QUICK_FINDER/usersells">Your Sells</Link>
+  </li>
+  <li class="nav-item">
     <Link class="nav-link" to="/QUICK_FINDER/Sell">Sell</Link>
   </li>
   <li class="nav-item">
@@ -21,7 +24,7 @@ class Head extends React.Component {
     <Link class="nav-link" to="/QUICK_FINDER/login">Account</Link>
   </li>
 
-</ul>    
+</ul>
         </>
       );
     }

@@ -5,7 +5,7 @@ import Dia from "./dialog";
 import Box from "./diaset";
 import Head from "./head";
 import "./Signup.css";
-import {Link} from "react-router-dom";
+import {Link,Redirect} from "react-router-dom";
 
 class Sell extends React.Component{
   constructor(props){
@@ -25,7 +25,8 @@ class Sell extends React.Component{
      status :'',
      price : '',
      description:'',
-     selectedFiles :null
+     selectedFiles :null,
+     isSubmit :false
    };
   }
 
@@ -63,6 +64,7 @@ onchangeFiles(e){
 
 onsubmit(e){
   e.preventDefault();
+  var currentuser = sessionStorage.username;
   var formdata =  new FormData();
   formdata.append('product_name' , this.state.product_name);
   formdata.append('product_type' , this.state.product_type);
@@ -72,57 +74,38 @@ onsubmit(e){
   for (var i = 0;i<this.state.selectedFiles.length;i++) {
     formdata.append(`files${i}`,this.state.selectedFiles[i]);
  }
-  axios({
-      method: 'post',
-      url: '/backend/SellNow',
-      data: formdata,
-      headers: {'Content-Type': 'multipart/form-data' }
-      })
-      .then(function (response) {
-        this.setState ={
-          product_name :'',
-          product_type :'',
-          status :'',
-          price : '',
-          description:'',
-          selectedFiles:null
-        };
-          console.log(response);
-      })
-      .catch(function (response) {
+ var userdata = {
+   SellerId : currentuser,
+   ProductId : "600c882615877370d8e380b8"
+ };
+    axios({
+    method: 'post',
+    url: 'http://localhost:5000/backend/SellNow',
+    data: formdata,
+    headers: {'Content-Type': 'multipart/form-data' }
+    })
+    .then(function (response) {
+     axios({
+       method:'post',
+       url :'http://localhost:5000/backend/Products',
+       data: userdata,
+       header :{'Content-Type': 'application/json'}
+     }).then((res)=>{
+        console.log(res);
 
-          console.log(response);
-      });
+     });
+        console.log(response);
+    })
+    .catch(function (response) {
 
-/*
-  console.log(this.state.selectedFiles);
-  var sellProduct ={
-    product_name : this.state.product_name,
-    product_type : this.state.product_type,
-    status       : this.state.status,
-    price        : this.state.price,
-    description  : this.state.description,
-    file         : this.state.selectedFiles
-  };
-
-console.log("here in object");
- console.log(sellProduct);
-  axios.post('/backend/SellNow',sellProduct)
-   .then(res =>  console.log(res.data));
-      this.setState ={
-        product_name :'',
-        product_type :'',
-        status :'',
-        price : '',
-        description:'',
-        selectedFiles:[]
-      };
-*/
+        console.log(response);
+    });
 
 }
 
 
   render(){
+
     return (<>
    <div class="container pt-3" style={{width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0px 0px 72px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
    <h2 style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px',textAlign:'center'}}> Sell Your Product  </h2>
@@ -156,5 +139,6 @@ console.log("here in object");
 
 </>);
   }
+
 }
 export default Sell;

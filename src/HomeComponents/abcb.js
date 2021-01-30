@@ -5,11 +5,10 @@ import AddProduct from './add_prod_btn'
 import './abcb.css'
 
 class ABCB extends Component {
+
   render(){
     return(
         <div>
-          <h2 className="head">ABCB</h2>
-          <NavBar/>
           <div className="container">
             <h6 className="sub">All Sells</h6>
             <ItemList/>

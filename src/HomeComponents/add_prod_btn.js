@@ -4,7 +4,9 @@ import './add_prod_btn.css'
 class AddProduct extends Component {
   render(){
     return(
-      <input className="addButton" type="Submit" value="Add Product"/>
+      <div className ="addsell" >
+      <a href= "http://localhost:3000/QUICK_FINDER/Sell/" >Add Product</a>
+     </div>
     )
   }
 }

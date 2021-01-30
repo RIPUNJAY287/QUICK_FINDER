@@ -7,7 +7,10 @@ const sellProductSchema = new schema({
   status:{type:String},
   price:{type:String},
   description:{type:String},
-  product_images:{type : [String]}
+  product_images:{type : [String]},
+  sold:{type:Boolean},
+  seller : {type:String},
+  buyer : {type:String}
 });
-const sellProduct = mongoose.model('sellProduct',sellProductSchema,"sellProducts");
+const sellProduct = mongoose.model('sellProduct',sellProductSchema);
 module.exports = sellProduct;
