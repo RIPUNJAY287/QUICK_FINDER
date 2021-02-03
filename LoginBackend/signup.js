@@ -39,7 +39,6 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true }, err =
   console.log("Connected to mongoose");
 })
 
-
 const path = require('path')
 const { ObjectId } = require('mongodb')
 

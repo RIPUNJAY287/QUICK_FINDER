@@ -7,6 +7,7 @@ import ChatButton from './ChatButton'
 class DetailsBox extends Component {
 
   buy=(e)=>{
+    console.log(this.props);
     var buyDetails={
       buyerID:sessionStorage.getItem("username"),
       sellerID:"213",
