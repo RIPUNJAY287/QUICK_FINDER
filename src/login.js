@@ -14,7 +14,7 @@ class Login extends React.Component {
       username: "",
       password: "",
       isLoggedIn: false,
-      registered:true
+      registered: true
     };
   }
 
@@ -59,15 +59,15 @@ class Login extends React.Component {
       }).then((res) => res.json())
         .then((json) => {
           console.log(json.mes);
-          var mes=json.mes
-          if ( mes=== "Welcome") {
+          var mes = json.mes
+          if (mes === "Welcome") {
             console.log("Welcome");
             console.log(json.usern);
             sessionStorage.setItem("username", json.usern);
             this.setState({ isLoggedIn: true });
-          }else if(mes==="regIssue"){
+          } else if (mes === "regIssue") {
             this.setState({
-              registered:false
+              registered: false
             })
           }
         })
