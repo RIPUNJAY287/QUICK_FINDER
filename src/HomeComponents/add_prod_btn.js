@@ -5,7 +5,7 @@ class AddProduct extends Component {
   render(){
     return(
       <div className ="addsell" >
-      <a href= "http://localhost:3000/QUICK_FINDER/Sell/" >Add Product</a>
+      <a className="x" href= "http://localhost:3000/QUICK_FINDER/Sell/" >Add Product</a>
      </div>
     )
   }

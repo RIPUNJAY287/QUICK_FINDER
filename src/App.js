@@ -10,6 +10,8 @@ import Boxopen1 from "./Boxopen1";
 import Profile from "./Profile";
 import ABCB from "./HomeComponents/abcb"
 import ChatBox from './Chat/ChatBox/Chatbox';
+import ABCBB from "./HomeComponents/abcbb"
+
 
 const App =() =>{
         return (<>
@@ -17,7 +19,8 @@ const App =() =>{
             {/* <Route exact path='/QUICK_FINDER/' component={Profile}/> */}
             <Route exact path='/QUICK_FINDER/chat' component={ChatBox}/>
             <Route exact path='/QUICK_FINDER/' component={Main}/>
-            <Route exact path='/QUICK_FINDER/usersells' component={ABCB}/>
+            <Route path='/QUICK_FINDER/usersells' component={ABCB}/>
+            <Route path='/QUICK_FINDER/userbuys' component={ABCBB}/>
             <Route path='/QUICK_FINDER/login' component={Login} />
             <Route path='/QUICK_FINDER/Signup' component={Signup} />
             <Route path='/QUICK_FINDER/About' component={About} />

@@ -69,9 +69,9 @@ router.post("/SellNow",upload.any('Upload'),(req,res,next) => {
   var Description  = req.body.description;
   var seller       = req.body.seller;
   console.log(seller);
-  console.log(req.body);
-  console.log("here is file from requested part");
   console.log(req.files);
+  console.log("here is file from requested part");
+  console.log(req.body);
   var len   = req.files.length;
 
   async function run() {
@@ -141,7 +141,7 @@ router.post("/Products",(req,res,next)=>{
 
         var result2 = await productsCollection.
         updateOne({"_id":sellerId},
-        {$push : {"sell": productObject}},
+        {$addToSet : {"sell": productObject}},
         {upsert:true});
 
         console.log(
@@ -154,9 +154,10 @@ router.post("/Products",(req,res,next)=>{
      run().catch(console.dir);
 });
 
+
 router.post("/usersellproduct",(req,res)=>{
-  var seller   = req.body.userdata.SellerId;
-  console.log(seller);
+  var id   = req.body.userdata.Id;
+  console.log(id);
 
      async function run() {
    try {
@@ -165,25 +166,26 @@ router.post("/usersellproduct",(req,res)=>{
      var database = mongodbclient.db("Quick_Finder");
      var productsCollection = database.collection("userProducts");
 
-     var sellerId = new ObjectID(seller);
-     console.log(seller);
+     var Id = new ObjectID(id);
+     console.log(Id);
        var array = [];
 
         var result3 = await productsCollection.
-        find({_id:sellerId}).toArray((err,result)=>{
+        find({_id:Id}).toArray((err,result)=>{
            if(err) throw err;
 
-           for(var i=0;i<result[0].sell.length;i++){
-            var sell = {};
-            sell.BuyerId = result[0].sell[i].BuyerId.toString();
-            sell.ProductId = (result[0].sell[i].ProductId).toString();
-            sell.Sold = result[0].sell[i].Sold.toString();
-            sell.Time = result[0].sell[i].Time.toString();
-            array.push(sell);
-          }
-            console.log(array);
-            res.send(array);
-        });
+
+            for(var i=0;i<result[0].sell.length;i++){
+             var sell = {};
+             sell.BuyerId = result[0].sell[i].BuyerId.toString();
+             sell.ProductId = (result[0].sell[i].ProductId).toString();
+             sell.Sold = result[0].sell[i].Sold.toString();
+             sell.Time = result[0].sell[i].Time.toString();
+             array.push(sell);
+           }
+             console.log(array);
+             res.send(array);
+          });
 
       } finally {
       }
@@ -195,8 +197,8 @@ router.post("/usersellproduct",(req,res)=>{
 
 
 router.post("/userbuyproduct",(req,res)=>{
-  var seller   = req.body.userdata.SellerId;
-  console.log(seller);
+  var id   = req.body.userdata.Id;
+  console.log(id);
 
      async function run() {
    try {
@@ -205,20 +207,19 @@ router.post("/userbuyproduct",(req,res)=>{
      var database = mongodbclient.db("Quick_Finder");
      var productsCollection = database.collection("userProducts");
 
-     var sellerId = new ObjectID(seller);
-     console.log(seller);
+     var Id = new ObjectID(id);
+     console.log(Id);
        var array = [];
 
         var result3 = await productsCollection.
-        find({_id:sellerId}).toArray((err,result)=>{
+        find({_id:Id}).toArray((err,result)=>{
            if(err) throw err;
 
-           for(var i=0;i<result[0].length;i++){
+           for(var i=0;i<result[0].purchased.length;i++){
             var purchased = {};
-            purchased.BuyerId = result[0].purchased[i].BuyerId.toString();
+            purchased.BuyerId = result[0].purchased[i].SellerId.toString();
             purchased.ProductId = (result[0].purchased[i].ProductId).toString();
-            purchased.Sold = result[0].sell[i].purchased.toString();
-            purchased.Time = result[0].sell[i].purchased.toString();
+            purchased.Time = result[0].purchased[i].Time.toString();
             array.push(purchased);
           }
             console.log(array);
@@ -232,6 +233,53 @@ router.post("/userbuyproduct",(req,res)=>{
 
 
 });
+
+/*
+router.post("/addrequests",(req,res)=>{
+  var seller   = req.body.userid.SellerId;
+  var buyer    =  req.body.userid.BuyerId;
+  var product  = req.body.userid.ProductId;
+  console.log(id);
+
+     async function run() {
+   try {
+     await mongodbclient.connect();
+     console.log("connection is established !");
+     var database = mongodbclient.db("Quick_Finder");
+     var productsCollection = database.collection("userProducts");
+
+     var SellerId = new ObjectID(seller);
+     var BuyerId = new ObjectID(buyer);
+     var ProductId = new ObjectID(product);
+   var result2 = await productsCollection.bulkwrite(
+      [
+        {
+          updateOne :
+             {
+                 "filter" : {"_id":SellerId},
+                 "update" :{$addToSet:{"sell":{$elemMatch:{ProductId:{$elemMatch:{Requests : BuyerId}}}}}},
+                 "upsert" :true
+            }
+        },
+        {
+          updateOne :
+            {
+                "filter" : {"_id":BuyerId},
+                  "update" :{$addToSet:{"purchased":{$elemMatch:{ProductId:{$elemMatch:{Requests : BuyerId}}}}}},
+                  "upsert" :true
+          }
+        }
+     ]
+   );
+
+      } finally {
+      }
+      }
+     run().catch(console.dir);
+
+
+});
+*/
 
 
 app.use('/backend',router);
