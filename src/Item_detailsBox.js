@@ -14,7 +14,7 @@ class DetailsBox extends Component {
       DateTime:new Date()
     }
     console.log("buyed");
-    fetch('http://localhost:3005/buy', {
+    fetch('http://localhost:4000/buy', {
           method: 'post',
           body : JSON.stringify({
               buyDetails

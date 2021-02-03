@@ -3,9 +3,11 @@ var cors=require('cors')
 var app=express()
 var fs=require('fs')
 var bodyParser=require('body-parser')
-var Chat=require('../Models/ChatSchema')
-var Users=require('../Models/user')
 const nodemailer=require('nodemailer')
+
+var Users=require('../Models/user')
+var Chat=require('../Models/ChatSchema')
+var Buy=require('../Models/userProducts')
 
 app.use(cors())
 
@@ -173,12 +175,7 @@ app.get('/activate/:id',async (req,res)=>{
                              })
 })
 
-app.post('/buy',function(req,res){
-
-  const url = "mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority";
-
-  const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
-
+app.post('/buy',async (req,res)=>{
   var buyerID=req.body.buyDetails.buyerID
   var sellerID=req.body.buyDetails.sellerID
   var productID=req.body.buyDetails.productID
@@ -191,27 +188,11 @@ app.post('/buy',function(req,res){
   }
   console.log(buyDocument);
 
-  async function run() {
-     try {  
-          await client.connect();
-          const db = client.db(dbName);
+  await Buy.updateOne({ "_id": ObjectId(buyerID) },
+                { $push: { purchased: buyDocument }},
+                {upsert:true})
 
-          const col = db.collection("userProducts");
-
-          await col.updateOne({ "_id": ObjectId(buyerID) },
-                        { $push: { purchased: buyDocument }},
-                        {upsert:true})
-
-          console.log("buy Added");
-          res.json({mes:buyDocument});
-
-         } catch (err) {
-          console.log(err.stack);
-      }
-      finally {
-         await client.close();
-     }  
-   }
-   run().catch(console.dir);
+  console.log("buy Added");
+  res.json({mes:buyDocument});
 })
 
