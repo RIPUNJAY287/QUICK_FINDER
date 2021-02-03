@@ -5,6 +5,7 @@ var fs=require('fs')
 var bodyParser=require('body-parser')
 var Chat=require('../Models/ChatSchema')
 var Users=require('../Models/user')
+const nodemailer=require('nodemailer')
 
 app.use(cors())
 
@@ -25,15 +26,15 @@ require('dotenv/config')
 
 const mongoose=require('mongoose')
 
-const url = process.env.URL
+const url = 'mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority'
 
 mongoose.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true},err=>{
   console.log("Connected to mongoose");
 })
 
-const { ObjectId } = require('mongodb')
 
 const path=require('path')
+const { ObjectId } = require('mongodb')
 
 io.on('connection', (socket) =>{
   console.log('a user is connected')
@@ -87,16 +88,19 @@ app.post('/login',async (req,res)=>{
   var loggedin=false;
 
   Users.find({email:email}).then(result=>{
-    if(result.activated){
+    console.log(result);
+    if(result[0].activated){
       console.log("Done");
-      res.json({mes:"Welcome",usern:result._id});
+      loggedin=true
+      res.json({mes:"Welcome",usern:result[0]._id});
     }else{
+      loggedin=false
       res.json({mes:"Account not activated"})
     }
   
   if(!loggedin){
     console.log("Does not exist");
-    res.json({mes:uname+"Does not exist"});
+    res.json({mes:email+"Does not exist"});
   }
 });
 })
@@ -164,7 +168,9 @@ app.post('/signup',async (req,res)=>{
 
 app.get('/activate/:id',async (req,res)=>{
   await Users.updateOne({"_id":ObjectId(req.params.id)},
-                             {$set:{"activated":true}})
+                             {$set:{"activated":true}}).then(result=>{
+                               res.send(result)
+                             })
 })
 
 app.post('/buy',function(req,res){

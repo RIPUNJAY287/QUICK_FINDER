@@ -38,7 +38,7 @@ class Signup extends React.Component{
       validated=false
     }
 
-    if(this.state.password.length>=6){
+    if(this.state.password.length<6){
       validated=false
     }
 
@@ -53,7 +53,7 @@ class Signup extends React.Component{
 
       };
 
-        fetch('http://localhost:3005/signup', {
+        fetch('http://localhost:4000/signup', {
           method: 'post',
           body : JSON.stringify({
             signupDetails
