@@ -4,45 +4,49 @@ import Dia from "./dialog"
 import Box from "./diaset"
 import Head from "./head"
 import "./login.css"
-import {Link, Redirect} from "react-router-dom";
-class Login extends React.Component{
+import { Link, Redirect } from "react-router-dom";
+import NotRegistered from './Alerts/notRegistered';
+class Login extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {username:"",
-                  password:"",
-                };
-    this.state= {isLoggedIn:false};
+    this.state = {
+      username: "",
+      password: "",
+      isLoggedIn: false,
+      registered: true
+    };
   }
 
-  validate=(e)=>{
-    console.log("validating "+e);
-    if(e!==undefined && this.state[e]!==""){
-      this.setState({[e]:this.state[e].trim()})
+  validate = (e) => {
+    console.log("validating " + e);
+    if (e !== undefined && this.state[e] !== "") {
+      this.setState({ [e]: this.state[e].trim() })
       return true
-    }else{
+    } else {
       return false
     }
   }
 
-  submitHandler=(e)=> {
+  submitHandler = (e) => {
     e.preventDefault();
-    var validated=true;
-    var keys=["username","password"]
-    keys.map(item=>{
+    var validated = true;
+    var keys = ["username", "password"]
+    keys.map(item => {
       console.log(item);
-       if(!this.validate(item)){
-         validated=false
-       }
+      if (!this.validate(item)) {
+        validated = false
+      }
     })
-    if(validated){
-      console.log(this.state.username+" "+this.state.password);
+    if (validated) {
+      console.log(this.state.username + " " + this.state.password);
       console.log("Submit handler");
 
-      var loginDetails ={
-        user_name : this.state.username,
-        pass_word : this.state.password
+      var loginDetails = {
+        user_name: this.state.username,
+        pass_word: this.state.password
       };
+
 
         fetch('http://localhost:4000/login', {
           method: 'post',
@@ -61,28 +65,44 @@ class Login extends React.Component{
          console.log(json.usern);
          sessionStorage.setItem("username", json.usern);
          this.setState({isLoggedIn:true});
+
         }
-     })
-     .catch((error) => {
-       console.error(error);
-     });
-   }else{
-     console.log("Empty Fields");
-   }
+      }).then((res) => res.json())
+        .then((json) => {
+          console.log(json.mes);
+          var mes = json.mes
+          if (mes === "Welcome") {
+            console.log("Welcome");
+            console.log(json.usern);
+            sessionStorage.setItem("username", json.usern);
+            this.setState({ isLoggedIn: true });
+          } else if (mes === "regIssue") {
+            this.setState({
+              registered: false
+            })
+          }
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      console.log("Empty Fields");
+    }
   }
 
-  handleChange=(e)=>{
-      var item=e.target.name
-      this.setState({ [e.target.name]: e.target.value });
+  handleChange = (e) => {
+    var item = e.target.name
+    this.setState({ [e.target.name]: e.target.value });
   }
 
-  render(){
+  render() {
     const isLoggedIn = this.state.isLoggedIn;
     const usern = this.state.usern;
-    if(isLoggedIn){
-    return <Redirect to='/Quick_Finder/' />
+    if (isLoggedIn) {
+      return <Redirect to='/Quick_Finder/' />
     }
     else {
+
     return (<>
   <div class="container" style={{padding:'0px',width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0 5px 10px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
   <div class="row">
@@ -111,15 +131,15 @@ class Login extends React.Component{
   </form>
   </div>
 
-                    </div>
-  </div>
 
+            </div>
+          </div>
+          {this.state.registered ? null : <NotRegistered />}
+        </div>
 
-  </div>
-
-    </>) ;
+      </>);
     }
- }
+  }
 
 }
 export default Login;

@@ -5,26 +5,26 @@ import Box2 from './Box2';
 import Box3 from './Box3';
 import Box4 from './Box4';
 import Box5 from './Box5';
-class Layout3 extends React.Component{
+class Layout3 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                    getting:[],
-                    search_input:"",
-                    i:0
-    
-                };
+            getting: [],
+            search_input: "",
+            i: 0
+        };
+    }
+    static getDerivedStateFromProps(props, state) {
+        return {
+            getting: props.getting,
+            i: props.layout_num
         }
-    static getDerivedStateFromProps(props,state){
-    return {
-        getting:props.getting,
-        i:props.layout_num
-}
     }
 
-    render(){
+    render() {
         return (
             <>
+
         <h4 style={{textAlign:'center',marginTop:'30px'}}>   Buy Vehicle And Full fill Your Dreams</h4>
             <div class="container" style={{width:'75%'}}>
             <div class="row">
@@ -96,6 +96,7 @@ class Layout3 extends React.Component{
                     <tr><td style={{textAlign:'center'}}><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>See More</button></td></tr>    
                   </table>
             </div>
+
 
             </>
         );

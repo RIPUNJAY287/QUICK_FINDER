@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import './Item_detailsBox.css'
 import'bootstrap/dist/css/bootstrap.min.css';
 import { ObjectId } from "mongodb";
+import ChatButton from './ChatButton'
 import {Link ,Redirect} from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
@@ -84,7 +85,8 @@ class DetailsBox extends Component {
     </div>
      <div className="Details_bottom">
      <p className="Details_pr">{this.props.property.price} </p>
-     <button type="button" class="btn btn-dark btn-sm Details_purBtn" onClick={this.buy}>Purchase </button>
+     <button type="button" class="btn btn-dark btn-sm Details_purBtn" onClick={this.buy}>PURCHASE</button>
+     <ChatButton toggleChat={this.props.toggleChat}/>
     </div>
     </div>
     </div>

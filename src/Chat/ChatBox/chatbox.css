@@ -1,0 +1,84 @@
+.chatcontainer{
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    height: 400px;
+    width: 280px;
+    display: none;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    border: 1px solid black;
+    background-color: cadetblue;
+    box-shadow: 0 0 30px 2px rgb(58, 79, 94);
+}
+
+.closechat{
+    position: absolute;
+    right: 0;
+    top: 0;
+    height: 35px;
+    width: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.closechat:hover{
+    cursor: pointer;
+    background-color: blanchedalmond;
+}
+
+.closechat p{
+    font-size: 20px;
+    margin: auto;
+    font-weight: bolder;
+}
+
+.mescontainer{
+    width: 100%;
+    height: auto;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-height: 350px;
+    scroll-behavior: smooth;
+}
+
+.enddiv{
+    position: relative;
+    border:1px solid red;
+    background-color: royalblue;
+}
+
+.formcontainer{
+    display: flex;  
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    width: 100%;
+    border-top: 1px solid black;
+}
+
+.formcontainer input{
+    height: 40px;
+    border: none;
+    border-right: 1px solid black;
+}
+
+.formcontainer input[type=text]{
+    z-index: 2;
+    flex: 8;
+}
+
+.formcontainer input[type=submit]{
+    z-index: 2;
+    flex: 2;
+}
+
+.formcontainer input[type=text]:focus{
+    box-shadow: 0 0 2px 2px blue;
+}
+
+

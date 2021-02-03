@@ -69,6 +69,7 @@ class Box1 extends React.Component{
           </div>
                 <div class="col-lg-6 pl-4 pt-3">
                    <table style={{textAlign:'center'}}>
+
                     <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>
                     <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>
                     <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>
@@ -88,6 +89,7 @@ class Box1 extends React.Component{
                                                 }
                                            }}
                     class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>
+
                   </table>
                 </div>
             </div>

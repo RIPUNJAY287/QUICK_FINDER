@@ -6,25 +6,26 @@ import Box3 from './Box3';
 import Box4 from './Box4';
 import Box5 from './Box5';
 import Box6 from './Box6';
-class Layout4 extends React.Component{
+class Layout4 extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-                    getting:[],
-                    search_input:"",
-                    i:0
-    
-                };
-        }
-    static getDerivedStateFromProps(props,state){
-    return {
-        getting:props.getting,
-        i:props.layout_num
-}
+            getting: [],
+            search_input: "",
+            i: 0
+
+        };
     }
-    render(){
+    static getDerivedStateFromProps(props, state) {
+        return {
+            getting: props.getting,
+            i: props.layout_num
+        }
+    }
+    render() {
         return (
             <>
+
         <h4 style={{textAlign:'center',marginTop:'30px'}}>   Buy Vehicle And Full fill Your Dreams</h4>
             <div class="container" style={{width:'75%'}}>
             <div class="row">
@@ -61,15 +62,14 @@ class Layout4 extends React.Component{
       product_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_id:""} 
       description={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].description:""} 
       seller_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].seller_id:""}/>
-
-  </div>
- </div>
-            </div>
-            <div class="container">
-                   <table style={{width:'100%'}}>
-                    <tr><td style={{textAlign:'center'}}><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>See More</button></td></tr>    
-                  </table>
-            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="container">
+                    <table style={{ width: '100%' }}>
+                        <tr><td style={{ textAlign: 'center' }}><button class="btn" style={{ backgroundColor: '#1C1A1A', color: '#FFF8F8', fontWeight: '700' }}>See More</button></td></tr>
+                    </table>
+                </div>
 
             </>
         );
