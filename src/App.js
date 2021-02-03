@@ -9,12 +9,15 @@ import Sell from "./Sell";
 import Boxopen1 from "./Boxopen1";
 import Profile from "./Profile";
 import ABCB from "./HomeComponents/abcb"
+import ABCBB from "./HomeComponents/abcbb"
+
 const App =() =>{
         return (<>
         <Switch>
             {/* <Route exact path='/QUICK_FINDER/' component={Profile}/> */}
             <Route exact path='/QUICK_FINDER/' component={Main}/>
             <Route path='/QUICK_FINDER/usersells' component={ABCB}/>
+            <Route path='/QUICK_FINDER/userbuys' component={ABCBB}/>
             <Route path='/QUICK_FINDER/login' component={Login} />
             <Route path='/QUICK_FINDER/Signup' component={Signup} />
             <Route path='/QUICK_FINDER/About' component={About} />
