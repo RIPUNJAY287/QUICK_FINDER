@@ -105,8 +105,16 @@ class Main extends React.Component{
     render(){
         return (
         <>
-
-        <div class="container">
+        {/* <div class="container">
+        <div class="row">
+        <div class="col-lg-11">
+        <input type="text" class="form-control" id="searchInput" style={{widht:"50%"}} onKeyUp={this.searchSuggestions}/>
+        </div>
+        <div class="col-lg-1">
+        <button class="btn btn-dark" onClick={this.search}>Search</button>
+        </div>
+        </div>
+       
         <div class="container">          
           {
           console.log(this.state.getting[0]?this.state.getting[0].product_name:"Loading"),
@@ -116,14 +124,6 @@ class Main extends React.Component{
           ))
         }
         </div>
-        <div class="row">
-        <div class="col-lg-11">
-        <input type="text" class="form-control" id="searchInput" style={{widht:"50%"}} onKeyUp={this.searchSuggestions}/>
-        </div>
-        <div class="col-lg-1">
-        <button class="btn btn-dark" onClick={this.search}>Search</button>
-        </div>
-        </div>
         <div style={{position:"absolute",backgroundColor:"white",zIndex:2}}>
         {
           array=this.state.searchSuggestions,
@@ -132,15 +132,12 @@ class Main extends React.Component{
           ))
         }
           </div>
-        </div>
+        </div> */}
         <Caro />
-        <Layout1 layout_num ={0} search_input={this.state.search_input} getting ={this.state.getting}/>
+        <Layout1 layout_num ={1} search_input={this.state.search_input} getting ={this.state.getting}/>
         <Layout2 layout_num ={3}  search_input={this.state.search_input} getting ={this.state.getting}/>
         <Layout3 layout_num ={6}  search_input={this.state.search_input} getting ={this.state.getting}/>
-        <Layout4 layout_num ={11}  search_input={this.state.search_input} getting ={this.state.getting}/>
-        <Layout1 layout_num ={14} search_input={this.state.search_input} getting ={this.state.getting}/>
-        <Layout4 layout_num ={17}  search_input={this.state.search_input} getting ={this.state.getting}/>
-        
+        <Layout4 layout_num ={11}  search_input={this.state.search_input} getting ={this.state.getting}/> 
         </>
             );
     }

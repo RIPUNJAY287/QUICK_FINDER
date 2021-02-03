@@ -8,22 +8,26 @@ class Box1 extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-                product_name:"Loading.....",
-                product_type:"Loading.....",
-                status:"Loading..",
-                price:"Loading..",
+                product_name:"",
+                product_images:"",
+                product_type:"",
+                status:"",
+                price:"",
                 seller_name:"",
                 seller_address:"",
                 product_id:"",
-                seller_id:"Loading..",
-                description:"Loading..",
-                search_input:"",
+      
+                seller_id:"",
+                description:"",
+                search_input:""
                 redirect :false
+
               };
       }
   static getDerivedStateFromProps(props,state){
     return {
         product_name:props.product_name,
+        product_images:props.product_images,
         product_type:props.product_type,
         status:props.status,
         price:props.price,
@@ -47,14 +51,22 @@ class Box1 extends React.Component{
 
   render(){
 
+    if(this.state.product_name=="")
+    {
+      return (
+        <div class="container m-2 p-3" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'250px',padding:'0px',backgroundColor:'white'}}> 
+        <div class="spinner-border text-muted" style={{width:"3rem",height:"3rem",marginLeft:"45%",marginTop:"20%"}}></div>
+        </div>
+    );
+    }else{
         return (
             <>
-            {/* <button onClick={this.getDetails}>Load</button> */}
-            <div class="container m-2 p-3" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'250px',padding:'0px',backgroundColor:'white'}}>
+            <div class="container m-2 p-3" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'250px',padding:'0px',backgroundColor:'white'}}> 
             <div class="row" style={{height:'100%'}}>
-                <div class="col-lg-6">
-                    <img style={{width:'100%',height:'100%'}}src="https://cdn.vox-cdn.com/thumbor/VxVwYQjX8YjyLFyBekkGbjXyyVI=/1400x1400/filters:format(jpeg)/cdn.vox-cdn.com/uploads/chorus_asset/file/19288658/DSCF7161.jpg"></img>
-                </div>
+                <div class="col-lg-6"> 
+                    <img style={{width:'100%',height:'100%'}}src={process.env.PUBLIC_URL+"/uploadpics/sellproducts/"+this.state.product_images}></img>
+
+          </div>
                 <div class="col-lg-6 pl-4 pt-3">
                    <table style={{textAlign:'center'}}>
                     <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>
@@ -85,6 +97,7 @@ class Box1 extends React.Component{
             </>
         );
     }
+  }
 
 }
 export default Box1;

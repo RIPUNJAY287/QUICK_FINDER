@@ -150,7 +150,7 @@ try{
     }
     else{
     return (<>
-   <div class="container pt-3" style={{width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0px 0px 72px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
+   <div class="container pt-3" style={{width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0 5px 10px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
    <h2 style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px',textAlign:'center'}}> Sell Your Product  </h2>
    <div style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px'}}>Product Information</div>
    <form style={{marginTop:'30px'}} onSubmit = {this.onsubmit} enctype="multipart/form-data" >

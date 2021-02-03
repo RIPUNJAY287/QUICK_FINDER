@@ -26,33 +26,36 @@ class Layout2 extends React.Component{
             <div class="row">
   <div class="col-lg-6">
   <Box2 search_input={this.state.search_input}
-   product_name={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_name:"Loading..."}
-    product_type={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_type:"Loading"}
-     status={this.state.getting[this.state.i]?this.state.getting[this.state.i].status:"Loading..."}
-      price={this.state.getting[this.state.i]?this.state.getting[this.state.i].price:"Loading...."} 
-      product_id={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_id:"Loading..."} 
-      description={this.state.getting[this.state.i]?this.state.getting[this.state.i].description:"Loading..."} 
-      seller_id={this.state.getting[this.state.i]?this.state.getting[this.state.i].seller_id:"Loading..."}/>
+   product_name={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_name:""}
+   product_images={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_images:""}
+    product_type={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_type:""}
+     status={this.state.getting[this.state.i]?this.state.getting[this.state.i].status:""}
+      price={this.state.getting[this.state.i]?this.state.getting[this.state.i].price:"."} 
+      product_id={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_id:""} 
+      description={this.state.getting[this.state.i]?this.state.getting[this.state.i].description:""} 
+      seller_id={this.state.getting[this.state.i]?this.state.getting[this.state.i].seller_id:""}/>
 
 
   </div>
   <div class="col-lg-6">
   <Box1 search_input={this.state.search_input}
-   product_name={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_name:"Loading..."}
-    product_type={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_type:"Loading"}
-     status={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].status:"Loading..."}
-      price={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].price:"Loading...."} 
-      product_id={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_id:"Loading..."} 
-      seller_id={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].seller_id:"Loading..."}/>
+   product_name={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_name:""}
+   product_images={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_images:""}
+    product_type={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_type:""}
+     status={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].status:""}
+      price={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].price:"."} 
+      product_id={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_id:""} 
+      seller_id={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].seller_id:""}/>
     <Box1 search_input={this.state.search_input}
-   product_name={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_name:"Loading..."}
-    product_type={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_type:"Loading"}
-     status={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].status:"Loading..."}
-      price={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].price:"Loading...."} 
-      product_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_id:"Loading..."} 
-      product_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_id:"Loading..."} 
-      description={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].description:"Loading..."} 
-      seller_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].seller_id:"Loading..."}/>
+   product_name={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_name:""}
+   product_images={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_images:""}
+    product_type={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_type:""}
+     status={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].status:""}
+      price={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].price:"."} 
+      product_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_id:""} 
+      product_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_id:""} 
+      description={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].description:""} 
+      seller_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].seller_id:""}/>
   </div>
 
  </div>
