@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {browserHistory,Link ,Redirect} from "react-router-dom";
 class Box5 extends React.Component{
     constructor(props) {
         super(props);
@@ -15,9 +16,9 @@ class Box5 extends React.Component{
             seller_id:"",
             description:"",
             search_input:""
-          };
-   
-                }
+          };  
+    }
+
       static getDerivedStateFromProps(props,state){
         return {
             product_name:props.product_name,
@@ -46,17 +47,31 @@ class Box5 extends React.Component{
             <div class="container m-2 p-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'220px',padding:'0px',backgroundColor:'white'}}> 
                 <div class="container p-2" style={{width:'150px'}}> 
                     <img style={{width:'100%'}} src={process.env.PUBLIC_URL+"/uploadpics/sellproducts/"+this.state.product_images}></img>
+
                 </div>
                 <div class="container">
                    <table style={{width:'100%'}}>
-                    <tr><td style={{fontWeight:'700',color:'#3E3B3B'}}>{this.state.product_name}</td><td><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</button></td></tr>    
+                    <tr><td style={{fontWeight:'700',color:'#3E3B3B'}}>{this.state.product_name}</td>
+                    <td>  <Link to ={{ pathname : "/QUICK_FINDER/Boxopen1",
+                                                    state:{
+                                                    product_name:this.state.product_name,
+                                                    product_type:this.state.product_type,
+                                                    status:this.state.status,
+                                                    price:this.state.price,
+                                                    product_id:this.state.product_id,
+                                                    seller_name:this.state.seller_name,
+                                                    seller_address:this.state.seller_address,
+                                                    seller_id:this.state.seller_id
+                                                }
+                                           }}
+                     class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>
                   </table>
                 </div>
             </div>
-     
+
             </>
         );
-    }   
-    }
+      }   
+   }
 }
 export default Box5;

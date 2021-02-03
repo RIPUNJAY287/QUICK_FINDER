@@ -1,7 +1,8 @@
 
 import React, {Component} from "react";
-import ItemBar from './item_bar'
-import './item_list.css'
+import  ItemBuyBar from './itembuy_bar';
+import ItemSellBar from './itemsell_bar';
+import './item_list.css';
 import axios from 'axios';
 
 class ItemList extends Component {
@@ -17,11 +18,15 @@ class ItemList extends Component {
       console.log("cuurent user: "+currentuser);
       if(currentuser != null){
       var userdata  = {
-        SellerId : currentuser,
+        Id : currentuser,
       };
       console.log(userdata);
-
-    try{const response  = await fetch('http://localhost:5000/backend/usersellproduct',
+     var type = this.props.type;
+     var pattern = "user"+type+"product";
+     var url = 'http://localhost:5000/backend/'+pattern;
+      console.log(url);
+    try{
+      const response  = await fetch(url,
                  { method: 'post',
                    body : JSON.stringify({userdata}),
                   headers: {
@@ -43,43 +48,43 @@ class ItemList extends Component {
     }
   }
 }
-  //   try{
-  //     const response = await axios({
-  //       method: 'post',
-  //       url: 'http://localhost:5000/backend/getuserproduct',
-  //       data: userdata,
-  //       headers: {'Content-Type': 'application/json'}
-  //     });
-  //   console.log(response.data);
-  //
-  // }
-  // catch(err){
-  //   console.log(err);
-  // }
-
 
 
   render(){
 
     var  sellitems = this.state.items;
     var   isLoaded = this.state.isLoaded;
+    console.log(this.props.type);
     if(!isLoaded) {
       return(
-          <p>Wait</p>
+          <p className="wait">Wait.....</p>
       )
     }
-    else{
+    else if(this.props.type == "sell"){
     return (
     <div className="itemlist">
     {
       this.state.items.map(function(item){
-        return <ItemBar item={item}/>;
+        return <ItemSellBar item={item}/>;
       })
     }
 
     </div>
       )
     }
+    else {
+    return (
+    <div className="itemlist">
+    {
+      this.state.items.map(function(item){
+        return <ItemBuyBar item={item}/>;
+      })
+    }
+
+    </div>
+      )
+    }
+
     }
 
 }
