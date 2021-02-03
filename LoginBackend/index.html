@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mongo Chat</title>
+    <!-- <link rel="stylesheet" href="index.css"> -->
+    <style>
+        .container{
+    height: 400px;
+    width: 400px;
+    display: flex;
+    border: 1px solid red;
+    flex-direction: column;
+    }
+
+    .message{
+        border: 1px solid blue;
+        height: 400px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-end;
+    }
+
+    .message p{
+        border: 1px solid red;
+        word-break: break-all;
+    }
+
+    .receiver{
+        height: auto;
+        display: flex;
+        justify-content: flex-start;
+        align-self: start;
+        width: 100%;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    .sender{
+        height: auto;
+        display: flex;
+        justify-content: flex-end;
+        align-self: flex-end;
+        width: 100%;
+        border: 1px solid rgb(21, 255, 0);
+    }
+
+    .entermes{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .entermes input{
+        height: 30px;
+        border: none;
+    }
+
+    .entermes input[type=text]{
+        box-shadow: 0 0 2px 2px blue;
+        width: 90%;
+        z-index: 2;
+    }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div id="status"></div>
+        <div id="messages" class="message">
+
+        </div>
+        <div class="entermes">
+            <input type="text" name="mes" id="mesinput">
+            <input type="submit" value="Send" id="send">
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+    <script src="http://localhost:4000/socket.io/socket.io.js"></script>
+    <script>
+        var messages=document.getElementById('messages')
+
+         var socket = io( 'http://localhost:4000', {'transports': ['websocket', 'polling']});
+        console.log(socket);
+        socket.on('message',data=>{
+            var rdiv=document.createElement('div')
+            rdiv.className="receiver"
+            var p=document.createElement('p')
+            p.innerText=data
+            rdiv.append(p)
+            messages.append(rdiv)
+            console.log(data);
+        })
+
+
+
+        var input=document.getElementById('mesinput')
+        var send=document.getElementById('send')
+
+        send.addEventListener('click',()=>{
+            socket.emit('sent-message',input.value)
+            var sdiv=document.createElement('div')
+            sdiv.className='sender'
+            var p=document.createElement('p')
+            p.innerText=input.value
+            sdiv.append(p)
+            messages.append(sdiv)
+        })
+
+    </script>
+</body>
+</html>

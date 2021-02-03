@@ -47,12 +47,15 @@ class Box1 extends React.Component{
                 <div class="col-lg-6 pl-4 pt-3">
                    <table style={{textAlign:'center'}}>
                     <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>    
-                    <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>    
-                    <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>    
+                    <tr><td colspan='2' style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>    
+                    <tr><td colspan='2' style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>    
                     <tr><td style={{fontWeight:'400',color:'#928D3D',fontWeight:'700',fontSize:'17px'}}>{this.state.price}</td><td style={{fontWeight:'400',color:'#2E7F8F',fontWeight:'600',fontSize:'17px'}}>{this.state.status}</td></tr>
                     <br />
-                    <tr><td colspan ='2'><Link to="/Quick_finder/Boxopen1" class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>    
-
+                    <tr>  
+                      <td colspan ='2'>
+                        <Link to={{ pathname: "/Quick_finder/Boxopen1", state: { prodIndex: "index" }}} class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link>
+                        </td>
+                      </tr>     
                   </table>
                 </div>
             </div>

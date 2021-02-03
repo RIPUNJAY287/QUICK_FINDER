@@ -12,7 +12,6 @@ class Layout3 extends React.Component{
                     getting:[],
                     search_input:"",
                     i:0
-    
                 };
         }
     static getDerivedStateFromProps(props,state){

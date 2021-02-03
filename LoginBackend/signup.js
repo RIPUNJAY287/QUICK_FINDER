@@ -3,8 +3,8 @@ var cors=require('cors')
 var app=express()
 var fs=require('fs')
 var bodyParser=require('body-parser')
-const http = require('http');
-
+var Chat=require('../Models/ChatSchema')
+var Users=require('../Models/user')
 
 app.use(cors())
 
@@ -14,55 +14,94 @@ app.use(bodyParser.urlencoded({
 
 app.use(bodyParser.json());
 
-const MongoClient = require('mongodb').MongoClient;
+var http = require('http').Server(app);
+var io = require('socket.io')(http,{'transports': ['websocket', 'polling']});
+
+http.listen(4000, () => {
+  console.log("listening");
+});
+
+require('dotenv/config')
+
+const mongoose=require('mongoose')
+
+const url = process.env.URL
+
+mongoose.connect(url,{ useNewUrlParser: true, useUnifiedTopology: true},err=>{
+  console.log("Connected to mongoose");
+})
+
 const { ObjectId } = require('mongodb')
-const url = "mongodb+srv://Avengers8:RipunJay8@cluster0.prtvt.mongodb.net/Quick_Finder?retryWrites=true&w=majority";
 
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
+const path=require('path')
 
-const dbName = "Quick_Finder";
+io.on('connection', (socket) =>{
+  console.log('a user is connected')
+  console.log(socket.id);
+
+  socket.on('join',(chatId)=>{
+    socket.join(chatId);
+    Chat.findOne({"chatId":chatId}).then(result=>{
+      socket.emit('allmessages', result.mesDetails);
+    })
+  })
+
+  socket.on('disconnect',()=>{
+      console.log("Disconnected");
+  })
+
+  socket.on('sent-message',(data)=>{
+    var chatId=""
+    message=data.data.message
+    chatId=data.data.room
+    id=data.data.id
+    var chatDocument={
+      "message":message,
+      "time":new Date(),
+      "id":id
+    }
+
+    Chat.updateOne({"chatId":chatId},
+                {
+                  $push:{
+                    mesDetails: 
+                    {
+                        $each: [ chatDocument ]
+                    } 
+                }
+              },{upsert:true}).then(()=>{
+                socket.broadcast.to(chatId).emit('receive', message);
+              })
+  })
+})
 
 app.get('/',function(req,res){
-  res.send("Hello")
+  res.sendFile(path.join(__dirname, 'index.html'));
 })
 
-app.post('/login',function(req,res){
+app.post('/login',async (req,res)=>{
 
-  console.log(req.body.loginDetails.user_name);
-
-  const uname=req.body.loginDetails.user_name
+  const email=req.body.loginDetails.user_name
   const pass=req.body.loginDetails.pass_word
 
-  console.log(uname,pass);
   var loggedin=false;
 
-  const request=req
-  async function run() {
-          await client.connect();
-          const db = client.db(dbName);
-
-          db.collection("Users").find({}).toArray(function(err, result) {
-          if (err) throw err;
-          console.log(uname," ",pass);
-          for(var i=0;i<result.length;i++){
-            console.log(result[i].UserName,result[i].PassWord);
-            if(uname===result[i].name && pass===result[i].password){
-              console.log("Logged In");
-              res.json({mes:"Welcome",usern:result[i]._id})
-              loggedin=true
-            }
-          }
-          console.log("Done");
-          if(!loggedin){
-            console.log("Does not exist");
-            res.json({mes:uname+"Does not exist"});
-          }
-        });
-      }
-   run().catch(console.dir);
+  Users.find({email:email}).then(result=>{
+    if(result.activated){
+      console.log("Done");
+      res.json({mes:"Welcome",usern:result._id});
+    }else{
+      res.json({mes:"Account not activated"})
+    }
+  
+  if(!loggedin){
+    console.log("Does not exist");
+    res.json({mes:uname+"Does not exist"});
+  }
+});
 })
 
-app.post('/signup',function(req,res){
+app.post('/signup',async (req,res)=>{
 
   var uname=req.body.signupDetails.fname
   var sname=req.body.signupDetails.lname
@@ -71,40 +110,62 @@ app.post('/signup',function(req,res){
   var email=req.body.signupDetails.email
   var address=req.body.signupDetails.address
 
-  async function run() {
-     try {
-          await client.connect();
-          const db = client.db(dbName);
+  let personDocument = {
+      "name": uname,
+      "sname": sname,
+      "password": password,
+      "mobile": mobile,
+      "email": email,
+      "address":address
+  }
 
-          const col = db.collection("Users");
+  var user=new Users(personDocument)
 
-          let personDocument = {
-              "name": uname,
-              "sname": sname,
-              "password": password,
-              "mobile": mobile,
-              "email": email,
-              "address":address
-          }
+    await Users.findOne({email:email}).then(result=>{
+      console.log(result);
+       if(result!==null){
+         console.log("User Existing");
+       }else{
+         try {
+           user.save().then(result=>{
+             var transporter = nodemailer.createTransport({
+               service: 'gmail',
+               auth: {
+                 user: 'quickfinder746@gmail.com',
+                 pass: 'Quickfinder@746'
+               }
+             });
+           
+             var mailOptions = {
+                 from: 'no reply',
+                 to: email,
+                 subject: 'QUICK FINDER account activation.',
+                 html: '<a href="http://localhost:4000/activate/'
+                         +result._id+
+                       '">Click on the link to activate your account.</a>'
+               } 
+           
+             transporter.sendMail(mailOptions, function(error, info){
+                 if (error) {
+                   console.log(error);
+                 } else {
+                   console.log('Email sent: ' + info.response);
+                 }
+               });
+           })
+   
+          } catch (err) {
+           console.log(err.stack);
+       }
+       }
+   })
 
-          console.log("Started");
-          const p = await col.insertOne(personDocument);
-          console.log("Done");
-          res.send(personDocument);
-
-         } catch (err) {
-          console.log(err.stack);
-      }
-      finally {
-         await client.close();
-     }
-   }
-   run().catch(console.dir);
 })
 
-app.listen(3005, () => {
-  console.log("listening");
-});
+app.get('/activate/:id',async (req,res)=>{
+  await Users.updateOne({"_id":ObjectId(req.params.id)},
+                             {$set:{"activated":true}})
+})
 
 app.post('/buy',function(req,res){
 

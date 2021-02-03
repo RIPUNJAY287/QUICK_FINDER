@@ -2,6 +2,8 @@ import React, {Component} from "react";
 import './Item_detailsBox.css'
 import'bootstrap/dist/css/bootstrap.min.css';
 import { ObjectId } from "mongodb";
+import ChatButton from './ChatButton'
+
 class DetailsBox extends Component {
 
   buy=(e)=>{
@@ -47,6 +49,7 @@ class DetailsBox extends Component {
      <div className="Details_bottom">
      <p className="Details_pr">{this.props.price} </p>
      <button type="button" class="btn btn-dark btn-sm Details_purBtn" onClick={this.buy}>PURCHASE</button>
+     <ChatButton toggleChat={this.props.toggleChat}/>
     </div>
     </div>
     </div>

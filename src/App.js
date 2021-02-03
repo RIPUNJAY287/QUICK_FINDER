@@ -9,10 +9,13 @@ import Sell from "./Sell";
 import Boxopen1 from "./Boxopen1";
 import Profile from "./Profile";
 import ABCB from "./HomeComponents/abcb"
+import ChatBox from './Chat/ChatBox/Chatbox';
+
 const App =() =>{
         return (<>
         <Switch>
             {/* <Route exact path='/QUICK_FINDER/' component={Profile}/> */}
+            <Route exact path='/QUICK_FINDER/chat' component={ChatBox}/>
             <Route exact path='/QUICK_FINDER/' component={Main}/>
             <Route exact path='/QUICK_FINDER/usersells' component={ABCB}/>
             <Route path='/QUICK_FINDER/login' component={Login} />
