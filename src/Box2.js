@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom';
+import {browserHistory,Link ,Redirect} from "react-router-dom";
 class Box1 extends React.Component{
   constructor(props) {
     super(props);
@@ -15,14 +16,14 @@ class Box1 extends React.Component{
                 description:"Loading..",
                 search_input:""
               };
-    
+
 
 
   //   this.getDetails();
   //         this.getDetails=this.getDetails.bind(this);
    }
   // componentDidUpdate(prevProps) {
-  //   if (prevProps.search_input != this.props.search_input) { 
+  //   if (prevProps.search_input != this.props.search_input) {
   //     this.getDetails();
   //   }
   // }
@@ -38,12 +39,15 @@ class Box1 extends React.Component{
         seller_id:props.seller_id,
         description:props.description,
         search_input:props.search_input}
-    }    
+    }
+
     render(){
+
+
         return (
              <>
-            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'508px',backgroundColor:'white'}}> 
-            <img style={{width:'100%'}} src="https://fdn.gsmarena.com/imgroot/news/20/03/realme-6-6i-c3-in-europe/-476x249w4/gsmarena_000.jpg" /> 
+            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'508px',backgroundColor:'white'}}>
+            <img style={{width:'100%'}} src="https://fdn.gsmarena.com/imgroot/news/20/03/realme-6-6i-c3-in-europe/-476x249w4/gsmarena_000.jpg" />
             <div class="row">
                 <div class="col-lg-6 pt-3">
                 <h5 style={{textAlign:'center',color:'#3B3E3E'}}>Description</h5>
@@ -51,12 +55,24 @@ class Box1 extends React.Component{
                 </div>
                 <div class="col-lg-6 pl-4 pt-3">
                    <table style={{textAlign:'center'}}>
-                    <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>    
-                    <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>    
-                    <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>    
+                    <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>
+                    <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>
+                    <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>
                     <tr><td style={{fontWeight:'400',color:'#928D3D',fontWeight:'700',fontSize:'17px'}}>{this.state.price}</td><td style={{fontWeight:'400',color:'#2E7F8F',fontWeight:'600',fontSize:'17px'}}>{this.state.status}</td></tr>
                     <br />
-                    <tr><td colspan ='2'><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</button></td></tr>    
+                    <tr><td colspan ='2'>  <Link to ={{ pathname : "/QUICK_FINDER/Boxopen1",
+                                                    state:{
+                                                    product_name:this.state.product_name,
+                                                    product_type:this.state.product_type,
+                                                    status:this.state.status,
+                                                    price:this.state.price,
+                                                    product_id:this.state.product_id,
+                                                    seller_name:this.state.seller_name,
+                                                    seller_address:this.state.seller_address,
+                                                    seller_id:this.state.seller_id
+                                                }
+                                           }}
+                    class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>
 
                   </table>
                 </div>
@@ -66,5 +82,6 @@ class Box1 extends React.Component{
             </>
         );
     }
+
 }
 export default Box1;

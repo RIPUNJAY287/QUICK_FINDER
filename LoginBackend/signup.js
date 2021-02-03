@@ -23,20 +23,20 @@ const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology:
 const dbName = "Quick_Finder";
 
 app.get('/',function(req,res){
-  res.send("Hello")
-})
+  res.send("Hello");
+});
 
 app.post('/login',function(req,res){
 
   console.log(req.body.loginDetails.user_name);
 
-  const uname=req.body.loginDetails.user_name
-  const pass=req.body.loginDetails.pass_word
+  const uname=req.body.loginDetails.user_name;
+  const pass=req.body.loginDetails.pass_word;
 
   console.log(uname,pass);
   var loggedin=false;
 
-  const request=req
+  const request=req;
   async function run() {
           await client.connect();
           const db = client.db(dbName);
@@ -48,8 +48,8 @@ app.post('/login',function(req,res){
             console.log(result[i].UserName,result[i].PassWord);
             if(uname===result[i].name && pass===result[i].password){
               console.log("Logged In");
-              res.json({mes:"Welcome",usern:result[i]._id})
-              loggedin=true
+              res.json({mes:"Welcome",usern:result[i]._id});
+              loggedin=true;
             }
           }
           console.log("Done");
@@ -60,16 +60,16 @@ app.post('/login',function(req,res){
         });
       }
    run().catch(console.dir);
-})
+});
 
 app.post('/signup',function(req,res){
 
-  var uname=req.body.signupDetails.fname
-  var sname=req.body.signupDetails.lname
-  var password=req.body.signupDetails.password
-  var mobile=req.body.signupDetails.mobile
-  var email=req.body.signupDetails.email
-  var address=req.body.signupDetails.address
+  var uname=req.body.signupDetails.fname;
+  var sname=req.body.signupDetails.lname;
+  var password=req.body.signupDetails.password;
+  var mobile=req.body.signupDetails.mobile;
+  var email=req.body.signupDetails.email;
+  var address=req.body.signupDetails.address;
 
   async function run() {
      try {
@@ -85,7 +85,7 @@ app.post('/signup',function(req,res){
               "mobile": mobile,
               "email": email,
               "address":address
-          }
+          };
 
           console.log("Started");
           const p = await col.insertOne(personDocument);
@@ -100,7 +100,7 @@ app.post('/signup',function(req,res){
      }
    }
    run().catch(console.dir);
-})
+});
 
 app.listen(4000, () => {
   console.log("listening");
@@ -112,20 +112,20 @@ app.post('/buy',function(req,res){
 
   const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
 
-  var buyerID=req.body.buyDetails.buyerID
-  var sellerID=req.body.buyDetails.sellerID
-  var productID=req.body.buyDetails.productID
-  var datetime=req.body.buyDetails.DateTime
+  var sellerID=req.body.buyDetails.SellerID;
+  var productID=req.body.buyDetails.ProductID;
+  var datetime=req.body.buyDetails.Time;
+  var buyerID  = req.body.buyDetails.buyerID;
 
   let buyDocument = {
-    "Time":datetime,
-    "SellerId":new ObjectId("5ff5404a31512f1b0ad64a48"),
-    "ProductId":new ObjectId("600c876d15877370d8e380b7")
-  }
+    "SellerId":new ObjectId(sellerID),
+    "ProductId":new ObjectId(productID),
+    "Time": new Date()
+  };
   console.log(buyDocument);
 
   async function run() {
-     try {  
+     try {
           await client.connect();
           const db = client.db(dbName);
 
@@ -133,7 +133,7 @@ app.post('/buy',function(req,res){
 
           await col.updateOne({ "_id": ObjectId(buyerID) },
                         { $push: { purchased: buyDocument }},
-                        {upsert:true})
+                        {upsert:true});
 
           console.log("buy Added");
           res.json({mes:buyDocument});
@@ -143,8 +143,7 @@ app.post('/buy',function(req,res){
       }
       finally {
          await client.close();
-     }  
+     }
    }
    run().catch(console.dir);
-})
-
+});

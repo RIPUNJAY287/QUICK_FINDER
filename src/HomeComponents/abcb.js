@@ -9,11 +9,11 @@ class ABCB extends Component {
   render(){
     return(
         <div>
+          <p className="sub">All Sells</p>
           <div className="containerabcd">
-            <h6 className="sub">All Sells</h6>
-            <ItemList/>
-            <AddProduct/>
+            <ItemList type = {"sell"}/>
           </div>
+            <AddProduct/>
         </div>
     )
   }

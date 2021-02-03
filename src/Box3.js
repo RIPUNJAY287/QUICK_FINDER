@@ -1,5 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {browserHistory,Link ,Redirect} from "react-router-dom";
+
 class Box3 extends React.Component{
   constructor(props) {
     super(props);
@@ -15,7 +17,7 @@ class Box3 extends React.Component{
                 description:"Loading..",
                 search_input:""
               };
-    
+
             }
   static getDerivedStateFromProps(props,state){
     return {
@@ -29,24 +31,40 @@ class Box3 extends React.Component{
         seller_id:props.seller_id,
         search_input:props.search_input}
     }
-    
+
     render(){
+
+
         return (
             <>
-            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'330px',padding:'0px',backgroundColor:'white'}}> 
-      
-                <div class="container"> 
+            <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'330px',padding:'0px',backgroundColor:'white'}}>
+
+                <div class="container">
                     <img style={{width:'100%'}}src="https://images-na.ssl-images-amazon.com/images/I/71S4fmaVk5L._SL1500_.jpg"></img>
                 </div>
                 <div class="container ml-3">
                    <table style={{width:'100%'}}>
-                    <tr><td style={{fontWeight:'700',color:'#3E3B3B',fontSize:'20px'}}>{this.state.product_name}</td><td><button class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</button></td></tr>    
+                    <tr><td style={{fontWeight:'700',color:'#3E3B3B',fontSize:'20px'}}>{this.state.product_name}</td>
+                    <td> <Link to ={{ pathname : "/QUICK_FINDER/Boxopen1",
+                                                    state:{
+                                                    product_name:this.state.product_name,
+                                                    product_type:this.state.product_type,
+                                                    status:this.state.status,
+                                                    price:this.state.price,
+                                                    product_id:this.state.product_id,
+                                                    seller_name:this.state.seller_name,
+                                                    seller_address:this.state.seller_address,
+                                                    seller_id:this.state.seller_id
+                                                }
+                                           }}
+                   class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore </Link></td></tr>
                   </table>
                 </div>
             </div>
-     
+
             </>
         );
     }
+
 }
 export default Box3;
