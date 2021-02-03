@@ -5,7 +5,7 @@ import Dia from "./dialog";
 import Box from "./diaset";
 import Head from "./head";
 import "./Signup.css";
-import {Link,Redirect} from "react-router-dom";
+import {Redirect} from "react-router-dom";
 
 class Sell extends React.Component{
   constructor(props){
@@ -62,7 +62,7 @@ onchangeFiles(e){
    });
 }
 
-onsubmit(e){
+async onsubmit(e){
   e.preventDefault();
   var currentuser = sessionStorage.username;
   var formdata =  new FormData();
@@ -78,36 +78,79 @@ onsubmit(e){
    SellerId : currentuser,
    ProductId : "600c882615877370d8e380b8"
  };
-    axios({
+
+
+
+try{
+  var res1 = await  axios({
     method: 'post',
     url: 'http://localhost:5000/backend/SellNow',
     data: formdata,
     headers: {'Content-Type': 'multipart/form-data' }
-    })
-    .then(function (response) {
-     axios({
+  });
+  console.log(res1);
+  var  res2  = await axios({
        method:'post',
        url :'http://localhost:5000/backend/Products',
        data: userdata,
        header :{'Content-Type': 'application/json'}
-     }).then((res)=>{
-        console.log(res);
-
      });
-        console.log(response);
-    })
-    .catch(function (response) {
-
-        console.log(response);
+  console.log(res2);
+      this.setState({
+      product_name :'',
+      product_type :'',
+      status :'',
+      price : '',
+      description:'',
+      selectedFiles :null,
+      isSubmit :true
     });
-
+  }
+  catch(err)
+   {
+    console.log(err);
+   }
 }
 
+/*  var req1 = await fetch('http://localhost:5000/backend/SellNow',
+    {
+    method: 'post',
+    data: JSON.stringify({formdata}),
+    headers: {'Content-Type': 'multipart/form-data' }
+  });
+  var res1 =  await req1.json();
+  var req2 = await fetch('http://localhost:5000/backend/Products',
+       {method:'post',
+       data: JSON.stringify({userdata}),
+       header :{'Content-Type': 'application/json'}
+     });
+
+  var res2 = await req2.json();
+  this.setState({
+    product_name :'',
+    product_type :'',
+    status :'',
+    price : '',
+    description:'',
+    selectedFiles :null,
+    isSubmit :true
+  });
+*/
 
   render(){
+    console.log(this.state);
+     var isSubmit = this.state.isSubmit;
 
+    if(isSubmit){
+       return (
+         <div>
+             <Redirect to= "/Quick_Finder/" />
+        </div>
+         )
+    }
+    else{
     return (<>
-   <div class="container pt-3" style={{width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0px 0px 72px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
+   <div class="container pt-3" style={{width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0 5px 10px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
    <h2 style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px',textAlign:'center'}}> Sell Your Product  </h2>
    <div style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px'}}>Product Information</div>
    <form style={{marginTop:'30px'}} onSubmit = {this.onsubmit} enctype="multipart/form-data" >
@@ -139,6 +182,7 @@ onsubmit(e){
 
 </>);
   }
+ }
 
 }
 export default Sell;

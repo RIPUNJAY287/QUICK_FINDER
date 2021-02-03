@@ -183,6 +183,7 @@ app.get('/activate/:id', async (req, res) => {
     })
 })
 
+
 app.post('/buy', async (req, res) => {
   var buyerID = req.body.buyDetails.buyerID
   var sellerID = req.body.buyDetails.sellerID
@@ -203,4 +204,3 @@ app.post('/buy', async (req, res) => {
   console.log("buy Added");
   res.json({ mes: buyDocument });
 })
-
