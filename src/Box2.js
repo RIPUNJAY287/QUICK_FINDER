@@ -4,31 +4,25 @@ class Box1 extends React.Component{
   constructor(props) {
     super(props);
     this.state = {
-                product_name:"Loading.....",
-                product_type:"Loading.....",
-                status:"Loading..",
-                price:"Loading..",
-                seller_name:"",
-                seller_address:"",
-                product_id:"",
-                seller_id:"Loading..",
-                description:"Loading..",
-                search_input:""
-              };
+      product_name:"",
+      product_images:"",
+      product_type:"",
+      status:"",
+      price:"",
+      seller_name:"",
+      seller_address:"",
+      product_id:"",
+      seller_id:"",
+      description:"",
+      search_input:""
+    };
     
-
-
-  //   this.getDetails();
-  //         this.getDetails=this.getDetails.bind(this);
-   }
-  // componentDidUpdate(prevProps) {
-  //   if (prevProps.search_input != this.props.search_input) { 
-  //     this.getDetails();
-  //   }
-  // }
+            }
   static getDerivedStateFromProps(props,state){
     return {
         product_name:props.product_name,
+        description:props.description,
+        product_images:props.product_images,
         product_type:props.product_type,
         status:props.status,
         price:props.price,
@@ -36,14 +30,21 @@ class Box1 extends React.Component{
         seller_name:props.seller_name,
         seller_address:props.seller_address,
         seller_id:props.seller_id,
-        description:props.description,
         search_input:props.search_input}
-    }    
+    }
     render(){
+      if(this.state.product_name=="")
+      {
         return (
+          <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'508px',backgroundColor:'white'}}> 
+          <div class="spinner-border text-muted" style={{width:"5rem",height:"5rem",marginLeft:"45%",marginTop:"45%"}}></div>
+          </div>
+        );
+      }else{  
+      return (
              <>
             <div class="container m-2" style={{boxShadow:'0 5px 10px rgb(0,0,0,0.16)',height:'508px',backgroundColor:'white'}}> 
-            <img style={{width:'100%'}} src="https://fdn.gsmarena.com/imgroot/news/20/03/realme-6-6i-c3-in-europe/-476x249w4/gsmarena_000.jpg" /> 
+            <img style={{width:'100%'}} src={process.env.PUBLIC_URL+"/uploadpics/sellproducts/"+this.state.product_images} /> 
             <div class="row">
                 <div class="col-lg-6 pt-3">
                 <h5 style={{textAlign:'center',color:'#3B3E3E'}}>Description</h5>
@@ -65,6 +66,7 @@ class Box1 extends React.Component{
            </div>
             </>
         );
-    }
+      }
+      }
 }
 export default Box1;
