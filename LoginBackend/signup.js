@@ -97,12 +97,12 @@ app.post('/login',async (req,res)=>{
       res.json({mes:"Welcome",usern:result[0]._id});
     }else{
       loggedin=false
-      res.json({mes:"Account not activated"})
+      res.json({mes:"regIssue"})
     }
   
   if(!loggedin){
     console.log("Does not exist");
-    res.json({mes:email+"Does not exist"});
+    res.json({mes:"failed"});
   }
 });
 })
