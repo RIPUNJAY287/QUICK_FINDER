@@ -15,7 +15,7 @@ class ChatButton extends Component {
     render(){
         return (
             <div className ="DiaBox">
-                <button onClick={this.show}>Chat</button>
+                <button onClick={this.show}>Chat With Seller</button>
             </div>
         )
     }
