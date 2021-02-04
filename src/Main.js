@@ -31,7 +31,7 @@ class Main extends React.Component{
         var obj ={};
         obj.search_input=search_input;
         console.log(obj.search_input);
-        fetch('http://localhost:3005/getDetails', {
+        fetch('http://localhost:4000/getDetails', {
             method: 'post',
             body : JSON.stringify({obj}),
             headers: {
@@ -53,7 +53,7 @@ class Main extends React.Component{
         var obj ={};
         obj.search_input=search_input;
         console.log(obj.search_input);
-        fetch('http://localhost:3005/getDetails', {
+        fetch('http://localhost:4000/getDetails', {
             method: 'post',
             body : JSON.stringify({obj}),
             headers: {
@@ -74,7 +74,7 @@ class Main extends React.Component{
       }
 
       filter(){
-        fetch('http://localhost:3005/filter', {
+        fetch('http://localhost:4000/filter', {
           method: 'post',
           body : JSON.stringify({
           }),
