@@ -19,7 +19,8 @@ class DetailsBox extends Component {
       "seller_address": "",
       "seller_id": "",
       "seller_name": "",
-      "status": ""
+      "status": "",
+      "product_image":""
     }
   }
 
@@ -39,7 +40,8 @@ class DetailsBox extends Component {
         "seller_address": this.props.property.seller_address,
         "seller_id": this.props.property.seller_id,
         "seller_name": this.props.property.seller_name,
-        "status": this.props.property.status
+        "status": this.props.property.status,
+        "product_image":this.props.property.product_images,
       })
     }
   }
@@ -72,7 +74,7 @@ class DetailsBox extends Component {
 
   render() {
     return (
-      <div className="DetailsBox">
+      <div className="DetailsBox" id={this.state.product_id}>
         <img className="Details_item" src={process.env.PUBLIC_URL + "/realme7.jpeg"} alt="got" />
         <div className="Details_details">
           <p className="Details_pro">{this.state.product_id}</p>
@@ -80,9 +82,9 @@ class DetailsBox extends Component {
           <p className="Details_location">location : {this.state.seller_address}</p>
           <p className="Details_disc">{this.state.status}</p>
           <div className="Details_pics">
-            <img className="Details_pic" src={process.env.PUBLIC_URL + "/realme.jpg"} alt="got" />
-            <img className="Details_pic" src={process.env.PUBLIC_URL + "/realme7.jpeg"} alt="got" />
-            <img className="Details_picl" src={process.env.PUBLIC_URL + "/realme7p.jpeg"} alt="got" />
+            <img className="Details_pic" src={"/QUICK_FINDER/uploadpics/sellproducts/"+this.state.product_image} alt="got" />
+            {/* <img className="Details_pic" src={process.env.PUBLIC_URL + "/realme7.jpeg"} alt="got" />
+            <img className="Details_picl" src={process.env.PUBLIC_URL + "/realme7p.jpeg"} alt="got" /> */}
           </div>
           <div className="Details_bottom">
             <p className="Details_pr">{this.state.price} </p>

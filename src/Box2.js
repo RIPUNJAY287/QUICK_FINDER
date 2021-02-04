@@ -72,7 +72,8 @@ class Box1 extends React.Component{
                                                     product_id:this.state.product_id,
                                                     seller_name:this.state.seller_name,
                                                     seller_address:this.state.seller_address,
-                                                    seller_id:this.state.seller_id
+                                                    seller_id:this.state.seller_id,
+                                                    product_images: this.props.product_images
                                                 }
                                            }}
                     class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>

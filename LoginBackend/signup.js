@@ -86,6 +86,58 @@ app.get('/', function (req, res) {
   res.sendFile(path.join(__dirname, 'index.html'));
 })
 
+const MongoClient = require('mongodb').MongoClient;
+const { isEmptyBindingElement } = require('typescript')
+
+const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
+
+const dbName = "Quick_Finder";
+app.post('/filter',function(req,res){
+  const request=req
+  async function run() {
+          await client.connect();
+          const db = client.db(dbName);
+          var array=[];
+          array = await  db.collection("sellProducts").distinct("product_type");
+          res.json({"mes":array})
+        }
+   run().catch(console.dir);
+})
+app.post('/getDetails',function(req,res){
+  function filterByValue(array, string) {
+    return array.filter(o =>
+        Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
+ }
+  var search_input=req.body.obj.search_input;
+  console.log("Ya its running ");
+  const request=req
+  async function run() {
+          await client.connect();
+          const db = client.db(dbName);
+          var array=[];
+          db.collection("sellProducts").find().toArray(function(err, result) {
+          if (err) throw err;
+          for(var i=0;i<result.length;i++){
+            console.log(result[i].product_name);
+            var obj={};
+            obj.product_name=result[i].product_name;
+            obj.product_type=result[i].product_type;
+            obj.status=result[i].status;
+            obj.price=result[i].price;
+            obj.description=result[i].description;
+            obj.product_images=result[i].product_images[0];
+            obj.product_id=ObjectId(result[i]._id).toString();
+            obj.seller_id=ObjectId(result[i].seller).toString();
+            array.push(obj);  
+          }
+          var anoarray=filterByValue(array,search_input);
+          anoarray=anoarray.concat(array);
+          res.json({mes:anoarray});
+  });
+}
+   run().catch(console.dir);  
+});
+
 app.post('/login', async (req, res) => {
 
   const email = req.body.loginDetails.user_name
@@ -105,7 +157,7 @@ app.post('/login', async (req, res) => {
         res.json({ mes: "regIssue" })
       }
 
-      if (!loggedin) {
+      if (result===null) {
         console.log("Does not exist");
         res.json({ mes: "failed" });
       }
