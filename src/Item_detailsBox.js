@@ -70,6 +70,10 @@ class DetailsBox extends Component {
   render(){
       console.log("in Item_detailsBox");
       console.log(this.props);
+      if(!this.props.property)
+      {
+       return (<div>undefinded</div>); 
+      }else{
       return (
      <div className ="DetailsBox">
      <img className="Details_item" src = {process.env.PUBLIC_URL+"/realme7.jpeg"} alt="got" />
@@ -90,7 +94,7 @@ class DetailsBox extends Component {
     </div>
     </div>
     </div>
-  )
+  )}
 }
 }
 

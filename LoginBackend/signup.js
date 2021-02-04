@@ -106,7 +106,7 @@ app.post('/login', async (req, res) => {
         res.json({ mes: "regIssue" })
       }
 
-      if (!loggedin) {
+      if (result==null) {
         console.log("Does not exist");
         res.json({ mes: "failed" });
       }

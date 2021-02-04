@@ -1,7 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Link} from "react-router-dom";
 import { getDefaultCompilerOptions } from 'typescript';
-import {browserHistory,Link ,Redirect} from "react-router-dom";
+import {browserHistory ,Redirect} from "react-router-dom";
+
 
 
 class Box1 extends React.Component{
@@ -20,10 +22,9 @@ class Box1 extends React.Component{
                 seller_id:"",
                 description:"",
                 search_input:""
-                redirect :false
-
               };
-      }
+    
+            }
   static getDerivedStateFromProps(props,state){
     return {
         product_name:props.product_name,
@@ -37,20 +38,8 @@ class Box1 extends React.Component{
         seller_id:props.seller_id,
         search_input:props.search_input}
     }
-
-    // props :{
-    // product_name:{this.state.product_name},
-    // product_type:{this.state.product_type},
-    // status:{this.state.status},
-    // price:{this.state.price},
-    // product_id:{this.state.product_id},
-    // seller_name:{this.state.seller_name},
-    // seller_address:{this.state.seller_address},
-    // seller_id:{this.state.seller_id}
-
-
+  
   render(){
-
     if(this.state.product_name=="")
     {
       return (
@@ -65,41 +54,25 @@ class Box1 extends React.Component{
             <div class="row" style={{height:'100%'}}>
                 <div class="col-lg-6"> 
                     <img style={{width:'100%',height:'100%'}}src={process.env.PUBLIC_URL+"/uploadpics/sellproducts/"+this.state.product_images}></img>
-
-          </div>
+                </div>
                 <div class="col-lg-6 pl-4 pt-3">
                    <table style={{textAlign:'center'}}>
-
-                    <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>
-                    <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>
-                    <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>
+                    <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>    
+                    <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>    
+                    <tr><td colspan='2'  style={{fontWeight:'400',color:'#707070'}}>{this.state.seller_id}</td></tr>    
                     <tr><td style={{fontWeight:'400',color:'#928D3D',fontWeight:'700',fontSize:'17px'}}>{this.state.price}</td><td style={{fontWeight:'400',color:'#2E7F8F',fontWeight:'600',fontSize:'17px'}}>{this.state.status}</td></tr>
                     <br />
-
-                    <tr><td colspan ='2'><Link to ={{ pathname : "/QUICK_FINDER/Boxopen1",
-                                                    state:{
-                                                    product_name:this.state.product_name,
-                                                    product_type:this.state.product_type,
-                                                    status:this.state.status,
-                                                    price:this.state.price,
-                                                    product_id:this.state.product_id,
-                                                    seller_name:this.state.seller_name,
-                                                    seller_address:this.state.seller_address,
-                                                    seller_id:this.state.seller_id
-                                                }
-                                           }}
-                    class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>
+                    <tr><td colspan ='2'><Link to="/Quick_finder/Boxopen1" class="btn" style={{backgroundColor:'#1C1A1A',color:'#FFF8F8',fontWeight:'700'}}>Explore</Link></td></tr>    
 
                   </table>
                 </div>
             </div>
 
              </div>
-
+     
             </>
         );
     }
-  }
-
+    }
 }
 export default Box1;
