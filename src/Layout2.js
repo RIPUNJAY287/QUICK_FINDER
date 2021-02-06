@@ -22,9 +22,9 @@ class Layout2 extends React.Component{
         return (
             <>
         <h4 style={{textAlign:'center',marginTop:'80px'}}>   Buy Vehicle And Full fill Your Dreams</h4>
-            <div class="container" style={{width:'75%'}}>
+            <div class="container-fluid" style={{width:'82%'}}>
             <div class="row">
-  <div class="col-lg-6">
+  <div class="col-lg-6 col-md-5 col-sm-5 ">
   <Box2 search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_name:""}
    product_images={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_images:""}
@@ -37,7 +37,7 @@ class Layout2 extends React.Component{
 
 
   </div>
-  <div class="col-lg-6">
+  <div class="col-lg-6 col-md-7 col-sm-7 ">
   <Box1 search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_name:""}
    product_images={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_images:""}

@@ -137,6 +137,29 @@ app.post('/getDetails',function(req,res){
 }
    run().catch(console.dir);  
 });
+app.post('/getUserData',function(req,res){
+  var username=new ObjectId(req.body.obj.username.toString());
+  console.log(username)
+  console.log("Ya its running ");
+  const request=req
+  async function run() {
+          await client.connect();
+          const db = client.db(dbName);
+          var obj={}
+          var array=[];
+          db.collection("Users").find({"_id":username}).toArray(function(err, result) {
+          if (err) throw err;
+            // obj.fname=result[0].name;
+            // obj.sname=result[0].sname;
+            // obj.email=result[0].email;
+            // obj.mobile=result[0].mobile;
+            // obj.address=result[0].address;  
+            console.log(obj);            
+          res.json({mes:obj});
+  });
+}
+   run().catch(console.dir);  
+});
 
 app.post('/login', async (req, res) => {
 

@@ -52,7 +52,7 @@ class Box6 extends React.Component {
                     <div class="container m-2 p-3" style={{ boxShadow: '0 5px 10px rgb(0,0,0,0.16)', height: '400px', padding: '0px', backgroundColor: 'white' }}>
                         <div class="row">
                             <div class="col-lg-12">
-                                <img style={{ width: '60%', marginLeft: '20%', height: '100%' }} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
+                                <img style={{objectFit:'cover',height:'140px', objectPosition: "25% 10%",width: '60%', marginLeft: '20%'}} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
 
                             </div>
                         </div>

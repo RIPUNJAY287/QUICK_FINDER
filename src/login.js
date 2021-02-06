@@ -4,6 +4,7 @@ import Dia from "./dialog"
 import Box from "./diaset"
 import Head from "./head"
 import "./login.css"
+import Profile from "./Profile"
 import { Link, Redirect } from "react-router-dom";
 import NotRegistered from './Alerts/notRegistered';
 class Login extends React.Component {
@@ -102,7 +103,7 @@ class Login extends React.Component {
       return <Redirect to='/Quick_Finder/' />
     }
     else {
-
+      if(!sessionStorage.username){
       return (<>
         <div class="container" style={{ padding: '0px', width: '80%', height: '500px', marginLeft: '10%', boxShadow: '0 5px 10px rgb(0,0,0,0.16)', backgroundColor: 'white' }}>
           <div class="row">
@@ -123,11 +124,14 @@ class Login extends React.Component {
                     <label for="pwd">Password</label>
                     <input type="password" class="form-control" name="password" value={this.state.password} onChange={this.handleChange} />
                   </div>
-                  <Link to="/QUICK_FINDER/signup" class="btn btn-default" id="signup">Create Profile</Link>
-                  <input type="submit" class="btn btn-default" value="Login" id="login" />
-                  <span style={{ fontSize: '15px', fontFamily: 'arial' }}>Or login with</span>
-                  <span style={{ fontSize: '13px', fontFamily: 'arial', fontWeight: '800' }}> FACEBOOK  </span>
-                  <span style={{ fontSize: '13px', fontFamily: 'arial', fontWeight: '800' }}> GOOGLE</span>
+                  <div class="row">
+                 <div class="col-lg-6">
+                 <input type="submit" class="btn btn-default" value="Login" id="login" />
+                 </div>
+                 <div class="col-lg-6"> 
+                <Link to="/QUICK_FINDER/signup" class="btn btn-default" id="signup">Create Profile</Link>
+                </div>
+                </div>
                 </form>
               </div>
             </div>
@@ -136,7 +140,11 @@ class Login extends React.Component {
         </div>
 
       </>);
-    }
+        }
+        else{
+         return (<div><Profile /></div>) 
+        }
+      }
   }
 
 }

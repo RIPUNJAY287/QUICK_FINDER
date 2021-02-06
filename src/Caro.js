@@ -9,7 +9,7 @@ class Caro extends React.Component{
         return (
             <>
 
-  <div class="container" style={{padding:'0px',width:'90%',height:'500px',marginLeft:'8%',boxShadow:'0 5px 10px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
+  <div class="container-fluid" style={{padding:'0px',width:'100%',height:'500px',boxShadow:'0 5px 10px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
 <Carousel>
   <Carousel.Item>
     <img

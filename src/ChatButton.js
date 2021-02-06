@@ -8,15 +8,19 @@ class ChatButton extends Component {
       }
 
     show=()=>{
+        if(!sessionStorage.username)
+        {
+        alert("SignIn First");    
+        }
+        else{
         console.log("show");
         this.props.toggleChat();
+        }
     }
 
     render(){
         return (
-            <div className ="DiaBox">
                 <button onClick={this.show}>Chat With Seller</button>
-            </div>
         )
     }
 }

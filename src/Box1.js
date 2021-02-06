@@ -1,7 +1,8 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import {Link} from "react-router-dom";
 import { getDefaultCompilerOptions } from 'typescript';
-import { browserHistory, Link, Redirect } from "react-router-dom";
+import { browserHistory, Redirect } from "react-router-dom";
 
 
 class Box1 extends React.Component {
@@ -63,13 +64,12 @@ class Box1 extends React.Component {
         <>
           <div class="container m-2 p-3" style={{ boxShadow: '0 5px 10px rgb(0,0,0,0.16)', height: '250px', padding: '0px', backgroundColor: 'white' }}>
             <div class="row" style={{ height: '100%' }}>
-              <div class="col-lg-6">
+              <div class="col-lg-6 col-md-6 col-sm-6">
                 <img style={{ width: '100%', height: '100%' }} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
 
               </div>
-              <div class="col-lg-6 pl-4 pt-3">
-                <table style={{ textAlign: 'center' }}>
-
+              <div class="col-lg-6 col-md-6 col-sm-6 pt-3">
+                <table style={{ textAlign: 'center', margin:'auto' }}>
                   <tr><td colspan='2' style={{ fontWeight: '700', color: '#707070', fontSize: '20px' }}>{this.state.product_name}</td></tr>
                   <tr><td colspan='2' style={{ fontWeight: '500', color: '#707070' }}>{this.state.product_type}</td></tr>
                   <tr><td colspan='2' style={{ fontWeight: '400', color: '#707070' }}>{this.state.seller_id}</td></tr>
@@ -101,7 +101,6 @@ class Box1 extends React.Component {
         </>
       );
     }
-  }
-
+    }
 }
 export default Box1;
