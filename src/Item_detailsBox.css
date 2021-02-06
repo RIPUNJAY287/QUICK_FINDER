@@ -1,51 +1,54 @@
 .DetailsBox{
-  margin:10px 0px 0px 10px;
-  width:800px;
-  height: 500px;
+  margin:auto;
+  width:740px;
+  height: 450px;
   background: white;
   border-radius: 5px;
   box-shadow: 7px 7px 20px #c4c4c4 ;
 }
 .Details_item{
   float:left;
-  height:300px;
+  height:280px;
   width:250px;
   padding: 10px;
   margin-top: 30px;
+  margin-left:20px;
 }
 .Details_details{
   float:left;
   height:400px;
   width:450px;
   text-align: left;
-  margin-top: 10px;
+  margin-top: 30px;
+  margin-left:20px;
   padding: 10px;
 }
 .Details_pics{
-
+margin-top:30px;
+margin-bottom:30px;
 }
 .Details_pic,.Details_picl{
-  float:left;
   height:100px;
   width: 100px;
   padding: 1px;
-  border: 1px solid black;
+  box-shadow:0 0 100 0 black;
+  margin:5px;
 }
 .Details_picl{
   float: none;
 }
 .Details_disc{
   font-size: 12px;
-  font-family: Andale Mono, monospace;
   color:rgb(120,120,120);
 }
 .Details_pro{
    font-size: 20px;
-   font-family: sans-serif;
    color:black;
 }
 .Details_name{
-  font-size: 16px;
+  font-size: 20px;
+  font-weight:700;
+  font-family:arial;
 }
 .Details_location{
   font-size: 14px;
@@ -55,14 +58,13 @@
 }
 .Details_pr{
   float: left;
-  color:rgb(194, 156, 19);
+  color:#222223;
   font-weight: bolder;
-  font-family: monospace;
-  font-size: 20px;
+  font-size: 18px;
 }
 .Details_purBtn{
   float: right;
-  margin-right: 130px;
+  margin-right: 25px;
   background-color: black;
   margin-left: 10px;
   border-radius: 0px;

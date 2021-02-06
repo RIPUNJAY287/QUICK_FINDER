@@ -1,6 +1,6 @@
 .minibox{
   width:210px;
-  height:240px;
+  height:215px;
   background-color: white;
   box-shadow: 5px 5px 20px #c4c4c4 ;
   margin:15px;
@@ -27,7 +27,7 @@
 
 .mini_expBtn{
   background-color: black;
-  margin: 12px 0px 0px 32px;
+  margin: 5px 0px 0px 32px;
   height:30px;
   font-size: 12px;
   }
