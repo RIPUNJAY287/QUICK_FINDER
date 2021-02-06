@@ -57,7 +57,7 @@ class ItemList extends Component {
     console.log(this.props.type);
     if(!isLoaded) {
       return(
-          <p className="wait">Wait.....</p>
+          <p className="wait">No data</p>
       )
     }
     else if(this.props.type == "sell"){

@@ -234,6 +234,39 @@ router.post("/userbuyproduct",(req,res)=>{
 
 });
 
+router.post("/buy",(req,res)=>{
+  var buyerID = req.body.buyDetails.buyerID
+  var sellerID = req.body.buyDetails.sellerID
+  var productID = req.body.buyDetails.productID
+   console.log(req.body.buyDetails);
+     async function run() {
+   try {
+     await mongodbclient.connect();
+     console.log("connection is established !");
+     var database = mongodbclient.db("Quick_Finder");
+     var Buy = database.collection("userProducts");
+
+     let buyDocument = {
+       "SellerId": new ObjectID(sellerID),
+       "ProductId": new ObjectID(productID),
+       "Time" : new Date()
+     }
+     console.log(buyDocument);
+     var BuyerId = new ObjectID(buyerID);
+
+      var result = Buy.updateOne({"_id":BuyerId},
+     {$addToSet : {"purchased":buyDocument}},
+     {upsert:true});
+
+     res.send(req.body);
+      } finally {
+      }
+      }
+     run().catch(console.dir);
+
+
+});
+
 /*
 router.post("/addrequests",(req,res)=>{
   var seller   = req.body.userid.SellerId;

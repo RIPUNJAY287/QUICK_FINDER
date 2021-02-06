@@ -12,7 +12,7 @@ class DetailsBox extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      
+
       "price":"" ,
       "product_id": "",
       "product_name": "",
@@ -39,7 +39,7 @@ class DetailsBox extends Component {
   }
 
   componentDidUpdate() {
-    
+
   }
 
   componentDidMount(){
@@ -69,7 +69,7 @@ class DetailsBox extends Component {
       //   "status":"2years",
       //   "product_image":"cam.jpg_1611433836065.jpg",
       // })
-      
+
     }
   }
 
@@ -84,7 +84,7 @@ class DetailsBox extends Component {
       productID: this.state.product_id,
     };
     console.log("buyed");
-    fetch('http://localhost:4000/buy', {
+    fetch('http://localhost:5000/backend/buy', {
       method: 'post',
       body: JSON.stringify({
         buyDetails
@@ -111,8 +111,8 @@ class DetailsBox extends Component {
           <div style={{fontFamily:"arial",fontSize:"27px",fontWeight:"700",color:"#454547"}}>{this.state.product_name}</div>
           <div style={{fontFamily:"arial",fontSize:"15px",color:"#C7C9C7"}}>{this.state.seller_name}</div>
           <div style={{fontFamily:"arial",fontSize:"15px",color:"#C7C9C7"}}>{this.state.seller_address}</div>
-          <div style={{fontFamily:"arial",fontSize:"11px",color:"#8D928D"}}>{this.state.description}</div> 
-          
+          <div style={{fontFamily:"arial",fontSize:"11px",color:"#8D928D"}}>{this.state.description}</div>
+
           {/* <p className="Details_pro">{this.state.product_id}</p>
           <p className="Details_name">{this.state.product_name}</p>
           <p className="Details_location">location : {this.state.seller_address}</p>
