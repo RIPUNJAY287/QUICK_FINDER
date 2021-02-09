@@ -100,7 +100,9 @@ router.post("/SellNow",upload.any('Upload'),(req,res,next) => {
    console.log(
      `${result1.insertedCount} documents were inserted with the _id: ${result1.insertedId}`,
    );
-   res.send(req.body);
+   var ProductId = result1.insertedId.toString();
+   console.log(ProductId);
+   res.send(ProductId);
  } finally {
  }
  }

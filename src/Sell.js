@@ -74,12 +74,6 @@ async onsubmit(e){
   for (var i = 0;i<this.state.selectedFiles.length;i++) {
     formdata.append(`files${i}`,this.state.selectedFiles[i]);
  }
- var userdata = {
-   SellerId : currentuser,
-   ProductId : "600c882615877370d8e380b8"
- };
-
-
 
 try{
   var res1 = await  axios({
@@ -88,7 +82,12 @@ try{
     data: formdata,
     headers: {'Content-Type': 'multipart/form-data' }
   });
-  console.log(res1);
+
+  var userdata = {
+    SellerId : currentuser,
+    ProductId : res1.ProductId
+  };
+
   var  res2  = await axios({
        method:'post',
        url :'http://localhost:5000/backend/Products',
