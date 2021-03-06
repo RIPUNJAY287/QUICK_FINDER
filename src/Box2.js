@@ -52,11 +52,7 @@ class Box1 extends React.Component{
             <img style={{width:'100%'}} src={process.env.PUBLIC_URL+"/uploadpics/sellproducts/"+this.state.product_images} /> 
 
             <div class="row">
-                <div class="col-lg-6 pt-3">
-                <h5 style={{textAlign:'center',color:'#3B3E3E'}}>Description</h5>
-                <div class="container" style={{textAlign:'center',color:'#3B3E3E',fontSize:'14px'}}>{this.state.description}</div>
-                </div>
-                <div class="col-lg-6 pl-4 pt-3">
+                <div class="col-lg-6 col-md-12 col-sm-12 p-4" >
                    <table style={{textAlign:'center'}}>
                     <tr><td colspan='2' style={{fontWeight:'700',color:'#707070',fontSize:'20px'}}>{this.state.product_name}</td></tr>
                     <tr><td colspan='2'  style={{fontWeight:'500',color:'#707070'}}>{this.state.product_type}</td></tr>
@@ -81,6 +77,11 @@ class Box1 extends React.Component{
 
                   </table>
                 </div>
+                           <div class="col-lg-6 col-md-12 col-sm-12 p-4">
+                <h5 style={{textAlign:'center',color:'#3B3E3E'}}>Description</h5>
+                <div class="container" style={{textAlign:'center',color:'#3B3E3E',fontSize:'14px'}}>{this.state.description}</div>
+                </div>
+     
             </div>
 
            </div>

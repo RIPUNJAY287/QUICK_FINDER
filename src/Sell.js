@@ -74,12 +74,6 @@ async onsubmit(e){
   for (var i = 0;i<this.state.selectedFiles.length;i++) {
     formdata.append(`files${i}`,this.state.selectedFiles[i]);
  }
- var userdata = {
-   SellerId : currentuser,
-   ProductId : "600c882615877370d8e380b8"
- };
-
-
 
 try{
   var res1 = await  axios({
@@ -88,7 +82,12 @@ try{
     data: formdata,
     headers: {'Content-Type': 'multipart/form-data' }
   });
-  console.log(res1);
+
+  var userdata = {
+    SellerId : currentuser,
+    ProductId : res1.ProductId
+  };
+
   var  res2  = await axios({
        method:'post',
        url :'http://localhost:5000/backend/Products',
@@ -149,6 +148,7 @@ try{
          )
     }
     else{
+      if(sessionStorage.username){
     return (<>
    <div class="container pt-3" style={{width:'80%',height:'500px',marginLeft:'10%',boxShadow:'0 5px 10px rgb(0,0,0,0.16)',backgroundColor:'white'}}>
    <h2 style={{fontFamily:'arial',fontWeight:'600',fontSize:'20px',textAlign:'center'}}> Sell Your Product  </h2>
@@ -180,7 +180,10 @@ try{
 
   </div>
 
-</>);
+</>);}
+else{
+  return <div>Sorry Login First</div>
+}
   }
  }
 

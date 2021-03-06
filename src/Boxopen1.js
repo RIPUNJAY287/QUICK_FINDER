@@ -32,10 +32,10 @@ class Main extends React.Component{
                     <div class="col-lg-3"><MiniBox /><MiniBox /></div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-3"><Box5 /></div>
-                    <div class="col-lg-3"><Box5 /></div>
-                    <div class="col-lg-3"><Box5 /></div>
-                    <div class="col-lg-3"><Box5 /></div>
+                    <div class="col-lg-3 col-md-4 col-sm-4"><Box5 /></div>
+                    <div class="col-lg-3 col-md-4 col-sm-4"><Box5 /></div>
+                    <div class="col-lg-3 col-md-4 col-sm-4"><Box5 /></div>
+                    <div class="col-lg-3 col-md-4 col-sm-4"><Box5 /></div>
 
                 </div>
                 <ChatBox display={this.state.showchat} sellerid={this.props.location.state.seller_id}/>

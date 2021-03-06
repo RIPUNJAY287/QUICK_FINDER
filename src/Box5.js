@@ -46,7 +46,7 @@ class Box5 extends React.Component {
         <>
           <div class="container m-2 p-2" style={{ boxShadow: '0 5px 10px rgb(0,0,0,0.16)', height: '220px', padding: '0px', backgroundColor: 'white' }}>
             <div class="container p-2" style={{ width: '150px' }}>
-              <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
+              <img style={{width:'100%',objectFit:'cover',height:'110px', objectPosition: "25% 10%"}} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
 
             </div>
             <div class="container">

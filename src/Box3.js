@@ -50,10 +50,9 @@ class Box3 extends React.Component {
           <div class="container m-2" style={{ boxShadow: '0 5px 10px rgb(0,0,0,0.16)', height: '330px', padding: '0px', backgroundColor: 'white' }}>
 
             <div class="container">
-              <img style={{ width: '100%' }} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
-
+              <img    style={{width:'100%',objectFit:'cover',height:'250px', objectPosition: "25% 10%"}} src={process.env.PUBLIC_URL + "/uploadpics/sellproducts/" + this.state.product_images}></img>
             </div>
-            <div class="container ml-3">
+            <div class="container m-2 mt-3">
               <table style={{ width: '100%' }}>
                 <tr><td style={{ fontWeight: '700', color: '#3E3B3B', fontSize: '20px' }}>{this.state.product_name}</td>
                   <td> <Link to={{

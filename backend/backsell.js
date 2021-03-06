@@ -101,7 +101,9 @@ router.post("/SellNow",upload.any('Upload'),(req,res,next) => {
    console.log(
      `${result1.insertedCount} documents were inserted with the _id: ${result1.insertedId}`,
    );
-   res.send(req.body);
+   var ProductId = result1.insertedId.toString();
+   console.log(ProductId);
+   res.send(ProductId);
  } finally {
  }
  }
@@ -227,6 +229,39 @@ router.post("/userbuyproduct",(req,res)=>{
             res.send(array);
         });
 
+      } finally {
+      }
+      }
+     run().catch(console.dir);
+
+
+});
+
+router.post("/buy",(req,res)=>{
+  var buyerID = req.body.buyDetails.buyerID
+  var sellerID = req.body.buyDetails.sellerID
+  var productID = req.body.buyDetails.productID
+   console.log(req.body.buyDetails);
+     async function run() {
+   try {
+     await mongodbclient.connect();
+     console.log("connection is established !");
+     var database = mongodbclient.db("Quick_Finder");
+     var Buy = database.collection("userProducts");
+
+     let buyDocument = {
+       "SellerId": new ObjectID(sellerID),
+       "ProductId": new ObjectID(productID),
+       "Time" : new Date()
+     }
+     console.log(buyDocument);
+     var BuyerId = new ObjectID(buyerID);
+
+      var result = Buy.updateOne({"_id":BuyerId},
+     {$addToSet : {"purchased":buyDocument}},
+     {upsert:true});
+
+     res.send(req.body);
       } finally {
       }
       }
