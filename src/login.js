@@ -60,16 +60,6 @@ class Login extends React.Component {
       }).then((res) => res.json())
         .then((json) => {
           console.log(json.mes);
-          if (json.mes === "Welcome") {
-            console.log("Welcome");
-            console.log(json.usern);
-            sessionStorage.setItem("username", json.usern);
-            this.setState({ isLoggedIn: true });
-
-          }
-        }).then((res) => res.json())
-        .then((json) => {
-          console.log(json.mes);
           var mes = json.mes
           if (mes === "Welcome") {
             console.log("Welcome");
@@ -77,6 +67,7 @@ class Login extends React.Component {
             sessionStorage.setItem("username", json.usern);
             this.setState({ isLoggedIn: true });
           } else if (mes === "regIssue") {
+            console.log("setting");
             this.setState({
               registered: false
             })
@@ -132,7 +123,7 @@ class Login extends React.Component {
               </div>
             </div>
           </div>
-          {this.state.registered ? null:<NotRegistered />}
+          {this.state.registered ? null : <NotRegistered/>}
         </div>
 
       </>);

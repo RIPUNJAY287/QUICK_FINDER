@@ -30,7 +30,7 @@ class Layout4 extends React.Component {
             <div class="container" style={{width:'75%'}}>
             <div class="row">
   <div class="col-lg-4">
-  <Box6 search_input={this.state.search_input}
+  <Box6 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_name:""}
    product_images={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_images:""}
     product_type={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_type:""}
@@ -41,7 +41,7 @@ class Layout4 extends React.Component {
   
   </div>
   <div class="col-lg-4">
-  <Box6 search_input={this.state.search_input}
+  <Box6 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_name:""}
    product_images={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_images:""}
     product_type={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].product_type:""}
@@ -52,7 +52,7 @@ class Layout4 extends React.Component {
   
   </div>
   <div class="col-lg-4">
-  <Box6 search_input={this.state.search_input}
+  <Box6 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_name:""}
    product_images={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_images:""}
     product_type={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_type:""}

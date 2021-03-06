@@ -6,6 +6,7 @@ import ChatButton from './ChatButton'
 import { Link, Redirect } from "react-router-dom";
 import { withRouter } from "react-router";
 import PropTypes from "prop-types";
+import ChatBox from "./Chat/ChatBox/Chatbox";
 
 
 class DetailsBox extends Component {
@@ -74,7 +75,8 @@ class DetailsBox extends Component {
 
   render() {
     return (
-      <div className="DetailsBox" id={this.state.product_id}>
+      <div className="DetailsBox" id={this.state.seller_id}>
+        <ChatBox/>
         <img className="Details_item" src={process.env.PUBLIC_URL + "/realme7.jpeg"} alt="got" />
         <div className="Details_details">
           <p className="Details_pro">{this.state.product_id}</p>
@@ -89,7 +91,7 @@ class DetailsBox extends Component {
           <div className="Details_bottom">
             <p className="Details_pr">{this.state.price} </p>
             <button type="button" class="btn btn-dark btn-sm Details_purBtn" onClick={this.buy}>PURCHASE</button>
-            <ChatButton toggleChat={this.props.toggleChat} />
+            {/* <ChatButton toggleChat={this.props.property.toggleChat}/> */}
           </div>
         </div>
       </div>

@@ -11,6 +11,7 @@
     border: 1px solid black;
     background-color: cadetblue;
     box-shadow: 0 0 30px 2px rgb(58, 79, 94);
+    z-index:20 ;
 }
 
 .closechat{

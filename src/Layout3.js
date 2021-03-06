@@ -29,7 +29,7 @@ class Layout3 extends React.Component {
             <div class="container" style={{width:'75%'}}>
             <div class="row">
   <div class="col-lg-4">
-  <Box3 search_input={this.state.search_input}
+  <Box3 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_name:""}
    product_images={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_images:""}
     product_type={this.state.getting[this.state.i]?this.state.getting[this.state.i].product_type:""}
@@ -49,7 +49,7 @@ class Layout3 extends React.Component {
       seller_id={this.state.getting[this.state.i+1]?this.state.getting[this.state.i+1].seller_id:""}/>
   </div>
   <div class="col-lg-5">
-  <Box4 search_input={this.state.search_input}
+  <Box4 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
   product_name={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_name:""}
   product_images={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_images:""}
     product_type={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].product_type:""}
@@ -61,7 +61,7 @@ class Layout3 extends React.Component {
       seller_id={this.state.getting[this.state.i+2]?this.state.getting[this.state.i+2].seller_id:""}/>
  </div>
   <div class="col-lg-3">
-  <Box5 search_input={this.state.search_input}
+  <Box5 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i+3]?this.state.getting[this.state.i+3].product_name:""}
    product_images={this.state.getting[this.state.i+3]?this.state.getting[this.state.i+3].product_images:""}
     product_type={this.state.getting[this.state.i+3]?this.state.getting[this.state.i+3].product_type:""}
@@ -70,7 +70,7 @@ class Layout3 extends React.Component {
       product_id={this.state.getting[this.state.i+3]?this.state.getting[this.state.i+3].product_id:""} 
       description={this.state.getting[this.state.i+3]?this.state.getting[this.state.i+3].description:""} 
       seller_id={this.state.getting[this.state.i+3]?this.state.getting[this.state.i+3].seller_id:""}/>
-  <Box5 search_input={this.state.search_input}
+  <Box5 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i+4+3]?this.state.getting[this.state.i+4+3].product_name:""}
    product_images={this.state.getting[this.state.i+4+3]?this.state.getting[this.state.i+4+3].product_images:""}
     product_type={this.state.getting[this.state.i+4]?this.state.getting[this.state.i+4].product_type:""}
@@ -79,7 +79,7 @@ class Layout3 extends React.Component {
       product_id={this.state.getting[this.state.i+4]?this.state.getting[this.state.i+4].product_id:""} 
       description={this.state.getting[this.state.i+4]?this.state.getting[this.state.i+4].description:""} 
       seller_id={this.state.getting[this.state.i+4]?this.state.getting[this.state.i+4].seller_id:""}/>
-  <Box5 search_input={this.state.search_input}
+  <Box5 toggleChat={this.props.toggleChat} search_input={this.state.search_input}
    product_name={this.state.getting[this.state.i+5]?this.state.getting[this.state.i+5].product_name:""}
    product_images={this.state.getting[this.state.i+5]?this.state.getting[this.state.i+5].product_images:""}
     product_type={this.state.getting[this.state.i+5]?this.state.getting[this.state.i+5].product_type:""}

@@ -65,6 +65,7 @@ class Box1 extends React.Component{
                     <br />
                     <tr><td colspan ='2'>  <Link to ={{ pathname : "/QUICK_FINDER/Boxopen1",
                                                     state:{
+                                                      // toggleChat:this.props.toggleChat,
                                                     product_name:this.state.product_name,
                                                     product_type:this.state.product_type,
                                                     status:this.state.status,

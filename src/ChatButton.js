@@ -9,7 +9,8 @@ class ChatButton extends Component {
 
     show=()=>{
         console.log("show");
-        this.props.toggleChat();
+        // this.props.toggleChat();
+        console.log(this.props);
     }
 
     render(){

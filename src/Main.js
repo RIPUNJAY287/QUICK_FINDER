@@ -6,105 +6,117 @@ import Layout2 from "./Layout2"
 import Layout3 from "./Layout3"
 import Layout4 from "./Layout4"
 import Caro from "./Caro"
-var array=[];
-class Main extends React.Component{
+
+var array = [];
+
+class Main extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-                first:[],
-                getting:[
-                  {
-                  }
-                ],
-                searchSuggestions:[],
-                search_input:""
-              };
-              this.filter();
-              this.getDetails("");
-              this.filter = this.filter.bind(this);
-              this.search = this.search.bind(this);
-              this.searchSuggestions = this.searchSuggestions.bind(this);
-              this.getDetails =this.getDetails.bind(this);    
-              this.getSuggestions =this.getSuggestions.bind(this);    
-          }
-        getDetails(search_input){
-        var obj ={};
-        obj.search_input=search_input;
-        console.log(obj.search_input);
-        fetch('http://localhost:4000/getDetails', {
-            method: 'post',
-            body : JSON.stringify({obj}),
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
-          }).then((res) => res.json())
-       .then((json) => {
-        console.log(json.mes.length);        
-        var meslen=json.mes.length;
-        // this.setState({getting:json.mes});         
-        this.setState({getting:json.mes})
-      });
-      return;
-      }
-      getSuggestions(search_input){
-        if(search_input!="")
+      first: [],
+      getting: [
         {
-        var obj ={};
-        obj.search_input=search_input;
-        console.log(obj.search_input);
-        fetch('http://localhost:4000/getDetails', {
-            method: 'post',
-            body : JSON.stringify({obj}),
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            }
-          }).then((res) => res.json())
-       .then((json) => {
-        console.log(json.mes.length);        
-        var meslen=json.mes.length;
-        // this.setState({getting:json.mes});         
-        this.setState({searchSuggestions:json.mes})
-      });
-      }else{
-        this.setState({searchSuggestions:[]});
-      }
-      return;
-      }
+        }
+      ],
+      searchSuggestions: [],
+      search_input: ""
+    };
+    this.filter();
+    this.getDetails("");
+    this.filter = this.filter.bind(this);
+    this.search = this.search.bind(this);
+    this.searchSuggestions = this.searchSuggestions.bind(this);
+    this.getDetails = this.getDetails.bind(this);
+    this.getSuggestions = this.getSuggestions.bind(this);
+  }
 
-      filter(){
-        fetch('http://localhost:4000/filter', {
-          method: 'post',
-          body : JSON.stringify({
-          }),
-          headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-          }
-        }).then((res) => res.json())
-     .then((json) => {
-         this.setState({first:json.mes});
+  getDetails(search_input) {
+    var obj = {};
+    obj.search_input = search_input;
+    console.log(obj.search_input);
+    fetch('http://localhost:4000/getDetails', {
+      method: 'post',
+      body: JSON.stringify({ obj }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }).then((res) => res.json())
+      .then((json) => {
+        console.log(json.mes.length);
+        var meslen = json.mes.length;
+        // this.setState({getting:json.mes});         
+        this.setState({ getting: json.mes })
       });
-        return ;
+    return;
+  }
+  getSuggestions(search_input) {
+    if (search_input != "") {
+      var obj = {};
+      obj.search_input = search_input;
+      console.log(obj.search_input);
+      fetch('http://localhost:4000/getDetails', {
+        method: 'post',
+        body: JSON.stringify({ obj }),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      }).then((res) => res.json())
+        .then((json) => {
+          console.log(json.mes.length);
+          var meslen = json.mes.length;
+          // this.setState({getting:json.mes});         
+          this.setState({ searchSuggestions: json.mes })
+        });
+    } else {
+      this.setState({ searchSuggestions: [] });
     }
-      search(){
-        this.setState({searchSuggestions:[]});
-        this.getDetails(document.getElementById("searchInput").value);
-        document.getElementById("searchInput").value=""
-        return ;
+    return;
+  }
+
+  filter() {
+    fetch('http://localhost:4000/filter', {
+      method: 'post',
+      body: JSON.stringify({
+      }),
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
       }
-      searchSuggestions(){
-        this.getSuggestions(document.getElementById("searchInput").value);
-        return ;
-      }
-      searchano(ani){
-        this.getDetails(ani);
-        return ;  
-      }
-    render(){
-        return (
-        <>
+    }).then((res) => res.json())
+      .then((json) => {
+        this.setState({ first: json.mes });
+      });
+    return;
+  }
+  search() {
+    this.setState({ searchSuggestions: [] });
+    this.getDetails(document.getElementById("searchInput").value);
+    document.getElementById("searchInput").value = ""
+    return;
+  }
+  searchSuggestions() {
+    this.getSuggestions(document.getElementById("searchInput").value);
+    return;
+  }
+  searchano(ani) {
+    this.getDetails(ani);
+    return;
+  }
+
+  toggleChat = () => {
+    var chatbox = document.getElementsByClassName('chatcontainer')[0]
+    if (chatbox.style.display === 'flex') {
+      this.setState({ showchat: false })
+    } else {
+      this.setState({ showchat: true })
+    }
+  }
+
+  render() {
+    return (
+      <>
         {/* <div class="container">
         <div class="row">
         <div class="col-lg-11">
@@ -134,12 +146,12 @@ class Main extends React.Component{
           </div>
         </div> */}
         <Caro />
-        <Layout1 layout_num ={1} search_input={this.state.search_input} getting ={this.state.getting}/>
-        <Layout2 layout_num ={3}  search_input={this.state.search_input} getting ={this.state.getting}/>
-        <Layout3 layout_num ={6}  search_input={this.state.search_input} getting ={this.state.getting}/>
-        <Layout4 layout_num ={11}  search_input={this.state.search_input} getting ={this.state.getting}/> 
-        </>
-            );
-    }
+        <Layout1 toggleChat={this.toggleChat} layout_num={1} search_input={this.state.search_input} getting={this.state.getting} />
+        <Layout2 toggleChat={this.toggleChat} layout_num={3} search_input={this.state.search_input} getting={this.state.getting} />
+        <Layout3 toggleChat={this.toggleChat} layout_num={6} search_input={this.state.search_input} getting={this.state.getting} />
+        <Layout4 toggleChat={this.toggleChat} layout_num={11} search_input={this.state.search_input} getting={this.state.getting} />
+      </>
+    );
+  }
 }
 export default Main;

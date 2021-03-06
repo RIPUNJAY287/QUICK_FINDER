@@ -1,8 +1,5 @@
 var express = require('express')
-var cors = require('cors')
-var app = express()
-var fs = require('fs')
-var bodyParser = require('body-parser')
+var app = express.Router()
 const nodemailer = require('nodemailer')
 
 var Users = require('../Models/user')
@@ -14,20 +11,12 @@ const saltRounds = 10;
 const myPlaintextPassword = 's0/\/\P4$$w0rD';
 const someOtherPlaintextPassword = 'not_bacon';
 
-app.use(cors())
-
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
-
-app.use(bodyParser.json());
-
 var http = require('http').Server(app);
 var io = require('socket.io')(http, { 'transports': ['websocket', 'polling'] });
 
-http.listen(4000, () => {
-  console.log("listening");
-});
+// http.listen(4000, () => {
+//   console.log("listening");
+// });
 
 require('dotenv/config')
 
@@ -46,10 +35,36 @@ io.on('connection', (socket) => {
   console.log('a user is connected')
   console.log(socket.id);
 
+  socket.on('notifications',(data)=>{
+    console.log("data",data);
+    Chat.find({chatId:data.room}).then(res=>{
+      var not_arr=[]
+      var arr=res[0]["mesDetails"]
+      // console.log(arr);
+      for(var i=0;i<arr.length;i++){
+        console.log(arr[i].id,arr[i].seen);
+        if(arr[i].id!==data.id && !arr[i].seen){
+          console.log("not seen",arr[i]);
+          not_arr.push(arr[i])
+        }
+      }
+      socket.emit('check',not_arr)
+    })
+  })
+
   socket.on('join', (chatId) => {
+    console.log("chatid", chatId);
     socket.join(chatId);
-    Chat.findOne({ "chatId": chatId }).then(result => {
-      socket.emit('allmessages', result.mesDetails);
+    Chat.findOne({ "chatId": chatId }).then((result) => {
+      if (result !== null) {
+        socket.emit('allmessages', result.mesDetails);
+      } else {
+        Chat.findOne({ "chatId": chatId }).then((result) => {
+          if (result !== null) {
+            socket.emit('allmessages', result.mesDetails);
+          }
+        })
+      }
     })
   })
 
@@ -58,6 +73,7 @@ io.on('connection', (socket) => {
   })
 
   socket.on('sent-message', (data) => {
+    console.log(data);
     var chatId = ""
     message = data.data.message
     chatId = data.data.room
@@ -65,7 +81,8 @@ io.on('connection', (socket) => {
     var chatDocument = {
       "message": message,
       "time": new Date(),
-      "id": id
+      "id": id,
+      "seen": false
     }
 
     Chat.updateOne({ "chatId": chatId },
@@ -80,63 +97,29 @@ io.on('connection', (socket) => {
         socket.broadcast.to(chatId).emit('receive', message);
       })
   })
+
+  socket.on('seen', (data) => {
+    console.log(data.room, data.id);
+
+     Chat.updateOne({"chatId": data.room},
+      { $set: { "mesDetails.$[elem].seen": true } },
+      { arrayFilters: [  { "elem.id": {$ne:data.id} } ],multi: true }).then(res=>{
+        console.log(res);
+      })
+  // Chat.updateOne({ "chatId": data.room, "mesDetails.$[elem].id": data.id },
+  //   {
+  //     $set: { 
+  //       "mesDetails.$[elem].seen": true 
+  //     }
+  //   }).then(res => {
+  //     console.log("seen", res);
+  //   })
+})
 })
 
-app.get('/', function (req, res) {
-  res.sendFile(path.join(__dirname, 'index.html'));
+app.get('/try',(req,res)=>{
+  res.send("Working");
 })
-
-const MongoClient = require('mongodb').MongoClient;
-const { isEmptyBindingElement } = require('typescript')
-
-const client = new MongoClient(url, { useNewUrlParser: true, useUnifiedTopology: true});
-
-const dbName = "Quick_Finder";
-app.post('/filter',function(req,res){
-  const request=req
-  async function run() {
-          await client.connect();
-          const db = client.db(dbName);
-          var array=[];
-          array = await  db.collection("sellProducts").distinct("product_type");
-          res.json({"mes":array})
-        }
-   run().catch(console.dir);
-})
-app.post('/getDetails',function(req,res){
-  function filterByValue(array, string) {
-    return array.filter(o =>
-        Object.keys(o).some(k => o[k].toLowerCase().includes(string.toLowerCase())));
- }
-  var search_input=req.body.obj.search_input;
-  console.log("Ya its running ");
-  const request=req
-  async function run() {
-          await client.connect();
-          const db = client.db(dbName);
-          var array=[];
-          db.collection("sellProducts").find().toArray(function(err, result) {
-          if (err) throw err;
-          for(var i=0;i<result.length;i++){
-            console.log(result[i].product_name);
-            var obj={};
-            obj.product_name=result[i].product_name;
-            obj.product_type=result[i].product_type;
-            obj.status=result[i].status;
-            obj.price=result[i].price;
-            obj.description=result[i].description;
-            obj.product_images=result[i].product_images[0];
-            obj.product_id=ObjectId(result[i]._id).toString();
-            obj.seller_id=ObjectId(result[i].seller).toString();
-            array.push(obj);  
-          }
-          var anoarray=filterByValue(array,search_input);
-          anoarray=anoarray.concat(array);
-          res.json({mes:anoarray});
-  });
-}
-   run().catch(console.dir);  
-});
 
 app.post('/login', async (req, res) => {
 
@@ -157,7 +140,7 @@ app.post('/login', async (req, res) => {
         res.json({ mes: "regIssue" })
       }
 
-      if (result===null) {
+      if (result === null) {
         console.log("Does not exist");
         res.json({ mes: "failed" });
       }
@@ -255,3 +238,5 @@ app.post('/buy', async (req, res) => {
   console.log("buy Added");
   res.json({ mes: buyDocument });
 })
+
+module.exports = app

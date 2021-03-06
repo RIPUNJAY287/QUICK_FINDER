@@ -8,6 +8,7 @@ var path = require('path');
 var sellProduct = require('./models/sell_model');
 var userProduct = require('./models/user_product_model');
 var  ObjectID = require('mongodb').ObjectID;
+var Loginbac=require('../LoginBackend/signup')
 
 var bodyParse = require('body-parser');
 app.use(cors());
@@ -281,8 +282,10 @@ router.post("/addrequests",(req,res)=>{
 });
 */
 
-
+app.use(Loginbac)
 app.use('/backend',router);
 app.use('/uploads',express.static(__dirname+'../public/uploadpics/'));
 app.use('/uploads',express.static(__dirname+'../public/'));
-app.listen(5000);
+app.listen(5000,()=>{
+  console.log("Listening");
+});
